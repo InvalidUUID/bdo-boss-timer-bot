@@ -15,8 +15,7 @@ def join_bosses(bosses):
     return list(map(lambda boss: boss.mention, bosses))
 
 async def print_next_boss_message(boss_name,boss_time,channel):
-	embed=new discord.Embed()
-    embed.description = ", ".join(join_bosses(boss_name))
+	embed = discord.Embed(description = ", ".join(join_bosses(boss_name)))
     await channel.send(embed=embed)
 
 file = io.open("boss_schedule.txt","r").read()
