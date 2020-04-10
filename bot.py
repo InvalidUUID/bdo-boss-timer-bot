@@ -107,12 +107,12 @@ async def background_task(channel,guild,role):
 	await bot.wait_until_ready()
 	print('Bot is ready')
 	while not bot.is_closed():
-		current_time = datetime.datetime.now()
+		current_time = datetime.datetime.utcnow()
 		current_hour = datetime.datetime.strftime(current_time,"%H:%M")
 		current_hour_p5 = datetime.datetime.strftime(current_time+datetime.timedelta(minutes=5),"%H:%M")
 		current_day = datetime.datetime.strftime(current_time,"%a")
 
-		print('Current time: {current_time} | Current-4: {current_hour_p5}'.format(current_time=current_hour,current_hour_p5=current_hour_p5))
+		print('Current time: {current_time} | Current+5: {current_hour_p5}'.format(current_time=current_hour,current_hour_p5=current_hour_p5))
 
 		next_boss_spawn = []
 		for hour in boss_schedule.keys():
