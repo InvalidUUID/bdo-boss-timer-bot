@@ -11,11 +11,13 @@ async def print_boss_message(boss_name,role,channel,delta):
 	elif len(boss_name) == 2:
 		await channel.send('{role.mention} - {boss[0].mention} and {boss[1].mention} will spawn in {delta}min'.format(role=role,boss=boss_name,delta=delta))
 
+def join_bosses(bosses):
+    return list(map(lambda boss: boss.mention, bosses))
+
 async def print_next_boss_message(boss_name,boss_time,channel):
-	if len(boss_name) == 1:
-		await channel.send('The next boss will be {boss[0].mention} at {time}'.format(boss=boss_name, time=boss_time))
-	elif len(boss_name) == 2:
-		await channel.send('The next bosses will be {boss[0].mention} and {boss[1].mention} at {time}'.format(boss=boss_name,time=boss_time))
+	embed=new discord.Embed()
+    embed.description = ", ".join(join_bosses(boss_name))
+    await channel.send(embed=embed)
 
 file = io.open("boss_schedule.txt","r").read()
 boss_schedule = eval(file)
