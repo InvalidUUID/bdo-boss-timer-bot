@@ -86,7 +86,7 @@ async def setchannel(ctx):
 
 
 @bot.command()
-async def stoppls(ctx):
+async def stopnotifs(ctx):
     '''Stop the bot from sending boss spawn notications'''
     if bot.bg_task:
         bot.bg_task.cancel()
