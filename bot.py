@@ -19,7 +19,7 @@ def join_bosses(bosses):
 
 
 def boss_descrip(boss):
-    return str('Spawns at {location}'.format(location=boss['location']))
+    return str('Spawns at {location}\n\nRecommendations:\n{recommendations}'.format(location=boss['location'], recommendations=boss['recommendations']))
 
 
 def join_boss_descriptions(bosses):
