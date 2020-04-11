@@ -12,7 +12,7 @@ async def print_boss_message(boss_name,role,channel,delta):
         await channel.send('{role.mention} - {boss[0].mention} and {boss[1].mention} will spawn in {delta}min'.format(role=role,boss=boss_name,delta=delta))
 
 def join_bosses(bosses):
-    return list(map(lambda boss: boss.name if type(boss) is NoneType else '[PH]', bosses))
+    return list(map(lambda boss: boss.mention, bosses))
 
 async def print_next_boss_message(boss_name,boss_time,channel,is_today):
     # need to convert utc "boss_time" time of day to be either that time today, or that time tomorrow
