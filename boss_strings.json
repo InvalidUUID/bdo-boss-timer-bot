@@ -3,63 +3,63 @@
       "name":"Kzarka",
       "description":"The Lord of Corruption",
       "location":"Serendia Shrine",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/KoGfDQT.png"
     },
   "Karanda":{
       "name":"Karanda",
       "description":"Harpy Queen",
       "location":"Karanda Ridge",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/eNfGAqu.png"
     },
   "Kutum":{
       "name":"Kutum",
       "description":"An ancient life form by the name of Kutum",
       "location":"Scarlet Sand Chamber",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/W15TFlL.png"
     },
   "Nouver":{
       "name":"Nouver",
       "description":"A dragon hiding in a sandstorm",
       "location":"Great Desert of Valencia",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/iwnyMxt.png"
     },
   "Vell":{
       "name":"Vell",
       "description":"The Heart of the Ocean",
       "location":"Vell's Realm",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/nmxjEyV.png"
     },
   "Quint":{
       "name":"Quint",
       "description":"The First Troll",
       "location":"Quint Hill",
-      "recomendations":"insert gear recomendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/HLSHnRp.png"
     },
   "Muraka":{
       "name":"Muraka",
       "description":"The King of Ogres",
       "location":"Calpheon Castel W. Forest",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/ZoGFtCI.png"
     },
   "Garmoth":{
       "name":"Garmoth",
       "description":"The Crimson Dragon",
       "location":"Garmoth's Nest",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/2MUA1dn.png"
     },
   "Offin":{
       "name":"Offin",
       "description":"Mirumok Destroyer",
       "location":"Holo Forest",
-      "recomendations":"insert gear recommendations and boss tips here",
+      "recommendations":"insert gear recommendations and boss tips here",
       "avatar": "https://i.imgur.com/zFuKRZt.png"
     }
 }
