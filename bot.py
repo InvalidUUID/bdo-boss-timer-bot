@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import io
 import asyncio
 import discord
@@ -19,7 +19,7 @@ async def print_next_boss_message(boss_name,boss_time,channel,is_today):
     # split boss_time from HH:MM into ['HH', 'MM'] and then into [HH, MM] as ints
     boss_time_tokens = map(lambda t : int(t), boss_time.split(':'))
     # use boolean to advance time, if needed
-    when = datetime.utcnow() + datetime.timedelta(days=(0 if is_today else 1))
+    when = datetime.utcnow() + timedelta(days=(0 if is_today else 1))
     # force boss_time onto when
     when = when.replace(hour=boss_time_tokens[0], minute=boss_time_tokens[1])
     
@@ -95,7 +95,7 @@ async def nextboss(ctx):
     current_time = datetime.utcnow()
     current_hour = datetime.strftime(current_time,"%H:%M")
     current_day = datetime.strftime(current_time,"%a")
-    next_day = datetime.strftime(current_time + datetime.timedelta(days=1),"%a")
+    next_day = datetime.strftime(current_time + timedelta(days=1),"%a")
 
     for hour in boss_schedule.keys():
         if current_hour < hour:
@@ -120,7 +120,7 @@ async def background_task(channel,guild,role):
     while not bot.is_closed():
         current_time = datetime.utcnow()
         current_hour = datetime.strftime(current_time,"%H:%M")
-        current_hour_p5 = datetime.strftime(current_time + datetime.timedelta(minutes=5),"%H:%M")
+        current_hour_p5 = datetime.strftime(current_time + timedelta(minutes=5),"%H:%M")
         current_day = datetime.strftime(current_time,"%a")
 
         print('Current time: {current_time} | Current+5: {current_hour_p5}'.format(current_time=current_hour,current_hour_p5=current_hour_p5))
