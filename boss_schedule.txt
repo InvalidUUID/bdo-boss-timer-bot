@@ -55,7 +55,7 @@
 			  "Fri":["Karanda"],
 			  "Sat":["Nouver"],
 			  "Sun":["Kzarka"]},
-	"21:00": {"Mon":["Kutum"], 
+	"21:10": {"Mon":["Kutum"], 
 			  "Tue":["Nouver"],
 			  "Wed":["Kutum"],
 			  "Thu":["Kzarka"],
