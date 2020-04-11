@@ -19,7 +19,7 @@ def join_bosses(bosses):
 
 
 def boss_descrip(boss):
-    return str('Spawns at {location}\n\nRecommendations:\n{recommendations}'.format(location=boss['location'], recommendations=boss['recommendations']))
+    return str('Spawns at {location}'.format(location=boss['location']))
 
 
 def join_boss_descriptions(bosses):
@@ -41,6 +41,8 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_author(name=" & ".join(join_bosses(boss_name)), icon_url=boss_name[0]['avatar'])
     for boss in boss_name:
         embed.add_field(name = boss['name'], value = boss_descrip(boss), inline = True)
+    for boss in boss_name:
+        embed.add_field(name='Recommendatations', value=boss['recommendations'])
     await channel.send(embed=embed)
 
 
