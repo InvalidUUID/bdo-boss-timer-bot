@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta, strptime, strftime, utcnow
 import io
 import asyncio
 import discord
@@ -19,7 +19,7 @@ async def print_next_boss_message(boss_name,boss_time,channel,is_today):
     # split boss_time from HH:MM into ['HH', 'MM'] and then into [HH, MM] as ints
     boss_time_tokens = map(lambda t : int(t), boss_time.split(':'))
     # use boolean to advance time, if needed
-    when = datetime.datetime.utcnow() + timedelta(days=(0 if is_today else 1))
+    when = utcnow() + timedelta(days=(0 if is_today else 1))
     # force boss_time onto when
     when = when.replace(hour=boss_time_tokens[0], minute=boss_time_tokens[1])
     
@@ -92,10 +92,10 @@ async def nextboss(ctx):
     channel = ctx.message.channel
     guild = ctx.message.guild
 
-    current_time = datetime.datetime.now()
-    current_hour = datetime.datetime.strftime(current_time,"%H:%M")
-    current_day = datetime.datetime.strftime(current_time,"%a")
-    next_day = datetime.datetime.strftime(current_time+datetime.timedelta(days=1),"%a")
+    current_time = utcnow()
+    current_hour = strftime(current_time,"%H:%M")
+    current_day = strftime(current_time,"%a")
+    next_day = strftime(current_time + timedelta(days=1),"%a")
 
     for hour in boss_schedule.keys():
         if current_hour < hour:
@@ -118,19 +118,19 @@ async def background_task(channel,guild,role):
     await bot.wait_until_ready()
     print('Bot is ready')
     while not bot.is_closed():
-        current_time = datetime.datetime.utcnow()
-        current_hour = datetime.datetime.strftime(current_time,"%H:%M")
-        current_hour_p5 = datetime.datetime.strftime(current_time+datetime.timedelta(minutes=5),"%H:%M")
-        current_day = datetime.datetime.strftime(current_time,"%a")
+        current_time = utcnow()
+        current_hour = strftime(current_time,"%H:%M")
+        current_hour_p5 = strftime(current_time + timedelta(minutes=5),"%H:%M")
+        current_day = strftime(current_time,"%a")
 
         print('Current time: {current_time} | Current+5: {current_hour_p5}'.format(current_time=current_hour,current_hour_p5=current_hour_p5))
 
         next_boss_spawn = []
         for hour in boss_schedule.keys():
             if current_hour < hour <= current_hour_p5:
-                delta = datetime.datetime.strptime(hour,"%H:%M")-datetime.datetime.strptime(current_hour,"%H:%M")
+                delta = strptime(hour,"%H:%M")-strptime(current_hour,"%H:%M")
                 next_boss_spawn = boss_schedule[hour][current_day]
-                break        
+                break
         
         print('Next boss found is...')
 
