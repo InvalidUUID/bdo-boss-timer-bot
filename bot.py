@@ -12,7 +12,7 @@ async def print_boss_message(boss_name,role,channel,delta):
         await channel.send('{role.mention} - {boss[0].mention} and {boss[1].mention} will spawn in {delta}min'.format(role=role,boss=boss_name,delta=delta))
 
 def join_bosses(bosses):
-    return list(map(lambda boss: boss.mention, bosses))
+    return list(map(lambda boss: boss.name, bosses))
 
 async def print_next_boss_message(boss_name,boss_time,channel,is_today):
     # need to convert utc "boss_time" time of day to be either that time today, or that time tomorrow
@@ -26,7 +26,7 @@ async def print_next_boss_message(boss_name,boss_time,channel,is_today):
     # embed = discord.Embed(description = ", ".join(join_bosses(boss_name)), timestamp = when)
     embed = discord.Embed(description='I\'m baaaaack!', timestamp = when)
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
-    embed.set_author(name='Karanda', icon_url='https://i.imgur.com/HOhqj1w.png')
+    embed.set_author(name=", ".join(join_bosses(boss_name)), icon_url='https://i.imgur.com/HOhqj1w.png')
     await channel.send(embed=embed)
 
 file = io.open("boss_schedule.txt","r").read()
