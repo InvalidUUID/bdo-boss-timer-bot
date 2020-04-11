@@ -16,9 +16,11 @@ async def print_boss_message(boss_name, role, channel, delta):
 
 def join_bosses(bosses):
     return list(map(lambda boss: boss['name'], bosses))
-    
+
+
 def join_boss_descriptions(bosses):
-    return "\n".join(list(map(lambda boss: '{description} will spawn at {location}'.format(description=boss['description'], location=boss['location']), bosses)))
+    return "\n".join(list(map(lambda boss: '**{name}**: {description} will spawn at {location}'.format(description=boss['description'], location=boss['location'], name = boss['name']), bosses)))
+
 
 async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     # need to convert utc "boss_time" time of day to be either that time today, or that time tomorrow
@@ -34,17 +36,21 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_author(name=" & ".join(join_bosses(boss_name)), icon_url=boss_name[0]['avatar'])
     await channel.send(embed=embed)
 
+
 file = io.open("boss_schedule.txt", "r").read()
 boss_schedule = eval(file)
 
 with open('boss_strings.json', 'r') as boss_strings:
     data=boss_strings.read()
 
+
 boss_data = json.loads(data)
+
 
 description = 'A Bot for managing Boss Spawn Alerts for Black Desert Online'
 bot = commands.Bot(command_prefix='.', description=description)
 token = getenv('BOT_TOKEN')
+
 
 @bot.event
 async def on_ready():
