@@ -22,10 +22,6 @@ def boss_descrip(boss):
     return str('Spawns at {location}'.format(location=boss['location']))
 
 
-def join_boss_descriptions(bosses):
-    return "\n".join(list(map(lambda boss: '**{name}**: {description} will spawn at {location}'.format(description=boss['description'], location=boss['location'], name = boss['name']), bosses)))
-
-
 async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     # need to convert utc "boss_time" time of day to be either that time today, or that time tomorrow
     # split boss_time from HH:MM into ['HH', 'MM'] and then into [HH, MM] as ints
@@ -36,7 +32,6 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     when = when.replace(hour=boss_time_tokens[0], minute=boss_time_tokens[1])
 
     embed = discord.Embed(timestamp=when)
-    # embed = discord.Embed(description=join_boss_descriptions(boss_name), timestamp=when)
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_author(name=" & ".join(join_bosses(boss_name)), icon_url=boss_name[0]['avatar'])
     for boss in boss_name:
