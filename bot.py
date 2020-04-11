@@ -15,7 +15,7 @@ async def print_boss_message(boss_name, role, channel, delta):
 
 
 def join_bosses(bosses):
-    return list(map(lambda boss: boss[name], bosses))
+    return list(map(lambda boss: boss['name'], bosses))
     
 def join_boss_descriptions(bosses):
     return "\n".join(list(map(lambda boss: '{description} will spawn at {location}'.format(description=boss['description'], location=boss['location']), bosses)))
