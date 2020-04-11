@@ -14,9 +14,14 @@ async def print_boss_message(boss_name,role,channel,delta):
 def join_bosses(bosses):
     return list(map(lambda boss: boss.mention, bosses))
 
-async def print_next_boss_message(boss_name,boss_time,channel):
-    # need to convert 
-    embed = discord.Embed(description = ", ".join(join_bosses(boss_name)))
+async def print_next_boss_message(boss_name,boss_time,channel,is_today):
+    # need to convert utc "boss_time" time of day to be either that time today, or that time tomorrow
+    # split boss_time from HH:MM into ['HH', 'MM'] and then into [HH, MM] as ints
+    boss_time_tokens = boss_time.split(':').map(lambda t : int(t))
+    # use boolean to advance time, if needed
+    when = (datetime.datetime.utcnow() + timedelta(days=is_today ? 0 : 1)).replace(hour=boss_time_tokens[0], minute=boss_time_tokens[1])
+    
+    embed = discord.Embed(description = ", ".join(join_bosses(boss_name)), timestamp = when)
     await channel.send(embed=embed)
 
 file = io.open("boss_schedule.txt","r").read()
@@ -93,18 +98,18 @@ async def nextboss(ctx):
     for hour in boss_schedule.keys():
         if current_hour < hour:
             next_boss_spawn = boss_schedule[hour][current_day]
-            day = current_day
+            is_today = true
             break
         # if there is no boss to spawn on the current day
         # then it should be the first boss of the next day
         next_boss_spawn = boss_schedule['00:00'][next_day]
-        day = next_day
+        is_today = false
         
     boss_names = []
     for boss in next_boss_spawn:
         boss_names.append((discord.utils.get(guild.roles, name=boss)))
 
-    await print_next_boss_message(boss_names,hour,channel)
+    await print_next_boss_message(boss_names,hour,channel,is_today)
 
 @bot.event
 async def background_task(channel,guild,role):
