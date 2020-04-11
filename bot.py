@@ -35,7 +35,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
 file = io.open("boss_schedule.txt", "r").read()
 boss_schedule = eval(file)
 
-description = 'Bot for managing boss alerts'
+description = 'A Bot for managing Boss Spawn Alerts for Black Desert Online'
 bot = commands.Bot(command_prefix='.', description=description)
 token = getenv('BOT_TOKEN')
 
@@ -43,23 +43,23 @@ token = getenv('BOT_TOKEN')
 @bot.event
 async def on_ready():
     print('Bot ID: ', bot.user.id)
-    print('Bot name: ', bot.user.name)
+    print('Bot Name: ', bot.user.name)
     print('---------------')
-    print('This bot is ready for action!')
-    print('I\'m currently on those servers: ')
+    print('Build succeeded, bot is now running.')
+    print('I\'m currently on the following servers: ')
     for guild in bot.guilds:
         print(guild)
 
 
 @bot.command()
 async def ping(ctx):
-    '''Ping!'''
+    '''Ping! Use this to check if the bot is responsiding to commands and running.'''
     await ctx.send('_pong_')
 
 
 @bot.command()
 async def notifyme(ctx):
-    '''Add your name to the list of notifications'''
+    '''Adds you to the list of users to be notified when a boss spawns.'''
     user = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     await user.add_roles(role)
@@ -68,7 +68,7 @@ async def notifyme(ctx):
 
 @bot.command()
 async def removeme(ctx):
-    '''Remove your name from the list of notications'''
+    '''Removes you from the list of users that will be notified when a boss spawns.'''
     user = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     await user.remove_roles(role)
@@ -77,7 +77,7 @@ async def removeme(ctx):
 
 @bot.command()
 async def setchannel(ctx):
-    '''Define what channel the bot will send notifications to'''
+    '''Define what channel the bot will send boss spawn notifications to.'''
     channel = ctx.message.channel
     guild = ctx.message.guild
     role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
@@ -87,7 +87,7 @@ async def setchannel(ctx):
 
 @bot.command()
 async def stoppls(ctx):
-    '''Stop the bot from sending notications'''
+    '''Stop the bot from sending boss spawn notications'''
     if bot.bg_task:
         bot.bg_task.cancel()
         try:
@@ -96,12 +96,12 @@ async def stoppls(ctx):
             print('Task was sucessfully canceled')
         finally:
             pass
-    await ctx.send('Okay, I\'ll stop...')
+    await ctx.send('Okay, I\'ll stop sending spawn notifications.')
 
 
 @bot.command()
 async def nextboss(ctx):
-    '''Says what the next boss is'''
+    '''Tells you which boss spawns next, and at what time it will spawn.'''
     channel = ctx.message.channel
     guild = ctx.message.guild
 
@@ -146,7 +146,7 @@ async def background_task(channel, guild, role):
                 next_boss_spawn = boss_schedule[hour][current_day]
                 break
 
-        print('Next boss found is...')
+        print('The next boss that will spawn is...')
 
         if next_boss_spawn:
             boss_names = []
