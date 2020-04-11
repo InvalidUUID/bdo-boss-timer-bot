@@ -2,12 +2,12 @@
 
 ### Future TODO's
 
-- Ping & join boss roles instead of one general role
-- Boss avatar in notification
+- Notify & Join boss roles instead of one general role
+- Boss avatar in notification embed
 - Don't require boss roles to be pre-setup
-- Command to set up boss named roles for notification
-- Prepend boss name pings in message content to "spawn" notifications
+  - Instead, use a command to set up boss roles for notifications
 - Change description to where the boss spawns
+  - Include new player tips regarding bosses.
 - Create boss config file with:
   - Boss name
   - Boss images (full, top half, bottom half)
