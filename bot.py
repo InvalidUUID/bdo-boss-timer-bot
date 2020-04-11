@@ -41,7 +41,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_author(name=" & ".join(join_bosses(boss_name)), icon_url=boss_name[0]['avatar'])
     for boss in boss_name:
         embed.add_field(name = boss['name'], value = boss_descrip(boss), inline = True)
-    embed.add_field(name='\u200b', value='', inline = False)
+    embed.add_field(name='', value='\u200b', inline = False)
     for boss in boss_name:
         embed.add_field(name='Recommendations', value=boss['recommendations'], inline = True)
     await channel.send(embed=embed)
