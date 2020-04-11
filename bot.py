@@ -42,11 +42,13 @@ token = getenv('BOT_TOKEN')
 
 @bot.event
 async def on_ready():
-    print('Bot ID: ', bot.user.id)
-    print('Bot Name: ', bot.user.name)
-    print('---------------')
-    print('Build succeeded, bot is now running.')
-    print('I\'m currently on the following servers: ')
+    print('Bot ID is: [', bot.user.id, ']')
+    print('Bot Name is: [', bot.user.name, ']')
+    print('')
+    print('Waiting for build to finish...')
+    print('Build completed, bot is now running.')
+    print('')
+    print('I\'m currently on the following server(s): ')
     for guild in bot.guilds:
         print(guild)
 
