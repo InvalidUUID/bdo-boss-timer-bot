@@ -100,12 +100,12 @@ async def nextboss(ctx):
     for hour in boss_schedule.keys():
         if current_hour < hour:
             next_boss_spawn = boss_schedule[hour][current_day]
-            is_today = true
+            is_today = True
             break
         # if there is no boss to spawn on the current day
         # then it should be the first boss of the next day
         next_boss_spawn = boss_schedule['00:00'][next_day]
-        is_today = false
+        is_today = False
         
     boss_names = []
     for boss in next_boss_spawn:
