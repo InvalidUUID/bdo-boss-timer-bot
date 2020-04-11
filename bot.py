@@ -1,7 +1,8 @@
-from datetime import datetime, timedelta
-import io
 import asyncio
 import discord
+import io
+import json
+from datetime import datetime, timedelta
 from discord.ext import commands
 from os import getenv
 
@@ -14,7 +15,10 @@ async def print_boss_message(boss_name, role, channel, delta):
 
 
 def join_bosses(bosses):
-    return list(map(lambda boss: boss.mention, bosses))
+    return list(map(lambda boss: boss.name, bosses))
+    
+def join_boss_descriptions(bosses):
+    return "\n".join(list(map(lambda boss: '{boss.description} will spawn at {boss.location}'.format(boss=boss), bosses)))
 
 
 async def print_next_boss_message(boss_name, boss_time, channel, is_today):
@@ -26,19 +30,22 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     # force boss_time onto when
     when = when.replace(hour=boss_time_tokens[0], minute=boss_time_tokens[1])
 
-    # embed = discord.Embed(description = ", ".join(join_bosses(boss_name)), timestamp=when)
-    embed = discord.Embed(description='I\'m baaaaack!', timestamp=when)
+    embed = discord.Embed(description=join_boss_descriptions(boss_name), timestamp=when)
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
-    embed.set_author(name=" & ".join(join_bosses(boss_name)), icon_url='https://i.imgur.com/HOhqj1w.png')
+    embed.set_author(name=" & ".join(join_bosses(boss_name)), icon_url=boss_name[0].avatar)
     await channel.send(embed=embed)
 
 file = io.open("boss_schedule.txt", "r").read()
 boss_schedule = eval(file)
 
+with open('boss_strings.json', 'r') as boss_strings:
+    data=boss_strings.read()
+
+boss_data = json.loads(data)
+
 description = 'A Bot for managing Boss Spawn Alerts for Black Desert Online'
 bot = commands.Bot(command_prefix='.', description=description)
 token = getenv('BOT_TOKEN')
-
 
 @bot.event
 async def on_ready():
@@ -124,7 +131,7 @@ async def nextboss(ctx):
 
     boss_names = []
     for boss in next_boss_spawn:
-        boss_names.append((discord.utils.get(guild.roles, name=boss)))
+        boss_names.append(boss_data[boss])
 
     await print_next_boss_message(boss_names, hour, channel, is_today)
 

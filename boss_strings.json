@@ -1,56 +1,56 @@
 {
-  "Kzarka":[
-    {
+  "Kzarka":{
       "name":"Kzarka",
       "description":"The Lord of Corruption",
-      "location":"Serendia Shrine"
-    }],
-  "Karanda":[
-    {   
+      "location":"Serendia Shrine",
+      "avatar": "https://i.imgur.com/KoGfDQT.png"
+    },
+  "Karanda":{
       "name":"Karanda",
       "description":"Harpy Queen",
-      "location":"Karanda Ridge"
-    }],
-  "Kutum":[
-    {   
+      "location":"Karanda Ridge",
+      "avatar": "https://i.imgur.com/eNfGAqu.png"
+    },
+  "Kutum":{
       "name":"Kutum",
       "description":"An ancient life form by the name of Kutum",
-      "location":"Scarlet Sand Chamber"
-    }],
-  "Nouver":[
-    {   
+      "location":"Scarlet Sand Chamber",
+      "avatar": "https://i.imgur.com/W15TFlL.png"
+    },
+  "Nouver":{
       "name":"Nouver",
       "description":"A dragon hiding in a sandstorm",
-      "location":"Great Desert of Valencia"
-    }],
-  "Vell":[
-    {   
+      "location":"Great Desert of Valencia",
+      "avatar": "https://i.imgur.com/iwnyMxt.png"
+    },
+  "Vell":{
       "name":"Vell",
       "description":"The Heart of the Ocean",
-      "location":"Vell's Realm"
-    }],
-  "Quint":[
-    {   
+      "location":"Vell's Realm",
+      "avatar": "https://i.imgur.com/nmxjEyV.png"
+    },
+  "Quint":{
       "name":"Quint",
       "description":"The First Troll",
-      "location":"Quint Hill"
-    }],
-  "Muraka":[
-    {   
+      "location":"Quint Hill",
+      "avatar": "https://i.imgur.com/HLSHnRp.png"
+    },
+  "Muraka":{
       "name":"Muraka",
       "description":"The King of Ogres",
-      "location":"Calpheon Castel W. Forest"
-    }],
-  "Garmoth":[
-    {   
+      "location":"Calpheon Castel W. Forest",
+      "avatar": "https://i.imgur.com/ZoGFtCI.png"
+    },
+  "Garmoth":{
       "name":"Garmoth",
       "description":"The Crimson Dragon",
-      "location":"Garmoth's Nest"
-    }],
-  "Offin":[
-    {   
+      "location":"Garmoth's Nest",
+      "avatar": "https://i.imgur.com/2MUA1dn.png"
+    },
+  "Offin":{
       "name":"Offin",
       "description":"Mirumok Destroyer",
-      "location":"Holo Forest"
-    }]
+      "location":"Holo Forest",
+      "avatar": "https://i.imgur.com/zFuKRZt.png"
+    }
 }
