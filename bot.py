@@ -43,7 +43,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
         embed.add_field(name = boss['name'], value = boss_descrip(boss), inline = True)
     embed.add_field(name='\u200b', value='\u200b', inline = False)
     for boss in boss_name:
-        embed.add_field(name='Recommendatations', value=boss['recommendations'], inline = True)
+        embed.add_field(name='Recommendations', value=boss['recommendations'], inline = True)
     await channel.send(embed=embed)
 
 
