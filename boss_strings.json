@@ -1,0 +1,56 @@
+{
+  "Kzarka":[
+    {
+      "name":"Kzarka",
+      "description":"The Lord of Corruption",
+      "location":"Serendia Shrine"
+    }],
+  "Karanda":[
+    {   
+      "name":"Karanda",
+      "description":"Harpy Queen",
+      "location":"Karanda Ridge"
+    }],
+  "Kutum":[
+    {   
+      "name":"Kutum",
+      "description":"An ancient life form by the name of Kutum",
+      "location":"Scarlet Sand Chamber"
+    }],
+  "Nouver":[
+    {   
+      "name":"Nouver",
+      "description":"A Dragon hiding in a sandstorm",
+      "location":"Great Desert of Valencia"
+    }],
+  "Vell":[
+    {   
+      "name":"Vell",
+      "description":"The Heart of the Ocean",
+      "location":"Vell's Realm"
+    }],
+  "Quint":[
+    {   
+      "name":"Quint",
+      "description":"The First Troll",
+      "location":"Quint Hill"
+    }],
+  "Muraka":[
+    {   
+      "name":"Muraka",
+      "description":"The King of Ogres",
+      "location":"Calpheon Castel W. Forest"
+    }],
+  "Garmoth":[
+    {   
+      "name":"Garmoth",
+      "description":"The Crimson Dragon",
+      "location":"Garmoth's Nest"
+    }],
+  "Offin":[
+    {   
+      "name":"Offin",
+      "description":"Mirumok Destroyer",
+      "location":"Holo Forest"
+    }]
+}
