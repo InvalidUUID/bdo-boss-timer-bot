@@ -53,13 +53,13 @@ async def on_ready():
 
 @bot.command()
 async def ping(ctx):
-    '''Ping! Use this to check if the bot is responsiding to commands and running.'''
+    '''Ping! Use this to check if the bot is responsiding to commands.'''
     await ctx.send('_pong_')
 
 
 @bot.command()
 async def notifyme(ctx):
-    '''Adds you to the list of users to be notified when a boss spawns.'''
+    '''Adds you to the notification list for when a boss spawns.'''
     user = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     await user.add_roles(role)
@@ -68,7 +68,7 @@ async def notifyme(ctx):
 
 @bot.command()
 async def removeme(ctx):
-    '''Removes you from the list of users that will be notified when a boss spawns.'''
+    '''Removes you from notification list for when a boss spawns.'''
     user = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     await user.remove_roles(role)
