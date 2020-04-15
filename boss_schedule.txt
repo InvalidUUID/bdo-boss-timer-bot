@@ -8,7 +8,7 @@
 			  "Sun":["Kzarka","Karanda"]},
 	"03:15": {"Mon":["Kzarka","Nouver"], 
 			  "Tue":["Kzarka"],
-			  "Wed":["Garmorth"],
+			  "Wed":["Garmoth"],
 			  "Thu":["Karanda","Kzarka"],
 			  "Fri":["Garmoth"],
 			  "Sat":["Kutum","Kzarka"],
