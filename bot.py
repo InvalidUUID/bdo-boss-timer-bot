@@ -159,7 +159,7 @@ async def background_task(channel, guild, role):
         current_hour_p5 = datetime.strftime(current_time + timedelta(minutes=53), "%H:%M")
         current_day = datetime.strftime(current_time, "%a")
 
-        print('Current time: {current_time} | Current+5: {current_hour_p5}'.format(current_time=current_hour, current_hour_p5=current_hour_p5))
+        print('Current day: {current_day} | Current time: {current_time} | Current+5: {current_hour_p5}'.format(current_time=current_hour, current_hour_p5=current_hour_p5, current_day=current_day))
 
         next_boss_spawn = []
         for hour in boss_schedule.keys():
