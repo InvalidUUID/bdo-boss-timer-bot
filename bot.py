@@ -166,9 +166,9 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
                 print(boss)
             break
 
-    print('The next boss that will spawn is...')
 
     if next_boss_spawn:
+        print('The next boss that will spawn is...')
         boss_names = []
 
         for boss in next_boss_spawn:
