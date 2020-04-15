@@ -47,7 +47,7 @@ file = io.open('boss_schedule.txt', 'r').read()
 boss_schedule = eval(file)
 
 with open('boss_strings.json', 'r') as boss_strings:
-    data=boss_strings.read()
+    data = boss_strings.read()
 
 
 boss_data = json.loads(data)
@@ -166,7 +166,6 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
                 print(boss)
             break
 
-
     if len(next_boss_spawn) >= 1:
         print('The next boss that will spawn is...')
         boss_names = []
@@ -176,6 +175,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
             boss_names.append((discord.utils.get(guild.roles, name=boss)))
 
         await print_boss_message(boss_names, channel, int(delta.seconds/60))
+
 
 @bot.event
 async def background_task(channel, guild):
