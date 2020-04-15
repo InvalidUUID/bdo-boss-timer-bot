@@ -3,7 +3,7 @@
       "name":"Kzarka",
       "description":"The Lord of Corruption",
       "location":"Serendia Shrine",
-      "recommendations":"Level 56, 150 AP, 180 DP\nWhen you see a big reed circle, hide behind the pillars to avoid the attack otherwise you may die.\n**Key Drops**: Kzarka's Sealed Weapon Box",
+      "recommendations":"Level 56, 150 AP, 180 DP\n**Key Drops**: Kzarka's Sealed Weapon Box",
       "avatar": "https://i.imgur.com/KoGfDQT.png"
     },
   "Karanda":{
@@ -59,7 +59,7 @@
       "name":"Offin",
       "description":"Mirumok Destroyer",
       "location":"Holo Forest",
-      "recommendations":"Level 56, 150 AP, 250 DP __Warning: Getting killed by Offin will result in loss of EXP and Crystals__\nWhen Offin spawns, focus one root along with other players. Once it is destroyed Offin will step out of his shield. You will then be able to use a hunting matchlock to destroy the shield (Shoot where Offin was standing before). Once the shield is destroyed Offin can be killed.\n**Key Drops**: Offin Tet's Light Sealed Weapon Box, Valtarra Eclipsed Belt, JIN/BON/WON Magic Crystal - Cobelinus",
+      "recommendations":"Level 56, 150 AP, 250 DP\n__Warning: Getting killed by Offin will result in loss of EXP and Crystals__\n**Key Drops**: Offin Tet's Light Sealed Weapon Box, Valtarra Eclipsed Belt, JIN/BON/WON Magic Crystal - Cobelinus",
       "avatar": "https://i.imgur.com/zFuKRZt.png"
     }
 }
