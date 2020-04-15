@@ -156,7 +156,7 @@ async def background_task(channel, guild, role):
     while not bot.is_closed():
         current_time = datetime.utcnow()
         current_hour = datetime.strftime(current_time, "%H:%M")
-        current_hour_p5 = datetime.strftime(current_time + timedelta(minutes=43), "%H:%M")
+        current_hour_p5 = datetime.strftime(current_time + timedelta(minutes=53), "%H:%M")
         current_day = datetime.strftime(current_time, "%a")
 
         print('Current time: {current_time} | Current+5: {current_hour_p5}'.format(current_time=current_hour, current_hour_p5=current_hour_p5))
