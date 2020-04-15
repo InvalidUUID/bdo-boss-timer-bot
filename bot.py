@@ -9,9 +9,9 @@ from os import getenv
 
 async def print_boss_message(boss_name, channel, delta):
     if len(boss_name) == 1:
-        await channel.send('{boss[0].mention} will spawn in {delta}min'.format(boss=boss_name, delta=delta))
+        await channel.send('{boss[0].mention} spawns in {delta} minutes'.format(boss=boss_name, delta=delta))
     elif len(boss_name) == 2:
-        await channel.send('{boss[0].mention} and {boss[1].mention} will spawn in {delta}min'.format(boss=boss_name, delta=delta))
+        await channel.send('{boss[0].mention} and {boss[1].mention} will spawn in {delta} minutes'.format(boss=boss_name, delta=delta))
 
 
 def join_bosses(bosses):
@@ -119,7 +119,7 @@ async def stopnotifs(ctx):
         try:
             await bot.bg_task
         except asyncio.CancelledError:
-            print('Task was sucessfully canceled')
+            print('Background task was sucessfully stopped.')
         finally:
             pass
     await ctx.send('Okay, I\'ll stop sending spawn notifications.')
@@ -181,7 +181,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
 @bot.event
 async def background_task(channel, guild):
     await bot.wait_until_ready()
-    print('Bot is ready')
+    print('Bot is Ready, background tast is running.')
     while not bot.is_closed():
         try:
             current_time = datetime.utcnow()
