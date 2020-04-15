@@ -182,7 +182,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
 async def background_task(channel, guild):
     await bot.wait_until_ready()
     print('───────────────────────────────────────────')
-    print('Bot is Ready, background task is running.')
+    print('Bot is Ready, background task is running')
     while not bot.is_closed():
         try:
             current_time = datetime.utcnow()
