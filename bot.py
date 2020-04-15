@@ -156,7 +156,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
     current_hour = datetime.strftime(current_time, "%H:%M")
     current_day = datetime.strftime(current_time, "%a")
     current_hour_pX = datetime.strftime(current_time + timedelta(minutes=time_ahead), "%H:%M")
-    print('Current day: {current_day} | Current time: {current_time} | Current+{x}: {current_hour_pX}'.format(current_time=current_hour, current_hour_pX=current_hour_pX, current_day=current_day, x=time_ahead))
+    # print('Current day: {current_day} | Current time: {current_time} | Current+{x}: {current_hour_pX}'.format(current_time=current_hour, current_hour_pX=current_hour_pX, current_day=current_day, x=time_ahead))
     next_boss_spawn = []
     for hour in boss_schedule.keys():
         if current_hour < hour == current_hour_pX:
@@ -167,7 +167,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
             break
 
 
-    if next_boss_spawn:
+    if len(next_boss_spawn) >= 1:
         print('The next boss that will spawn is...')
         boss_names = []
 
