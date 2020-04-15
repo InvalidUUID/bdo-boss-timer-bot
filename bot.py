@@ -169,7 +169,7 @@ async def background_task(channel, guild, role):
             next_boss_spawn = []
             for hour in boss_schedule.keys():
                 if current_hour < hour <= current_hour_p5:
-                    delta = strptime(hour, "%H:%M") - strptime(current_hour, "%H:%M")
+                    delta = datetime.strptime(hour, "%H:%M") - datetime.strptime(current_hour, "%H:%M")
                     print('i made a delta {delta}'.format(delta=delta) if delta else 'something went wrong')
                     next_boss_spawn = boss_schedule[hour][current_day]
                     for boss in next_boss_spawn:
@@ -186,7 +186,8 @@ async def background_task(channel, guild, role):
                     boss_names.append((discord.utils.get(guild.roles, name=boss)))
 
                 await print_boss_message(boss_names, role, channel, int(delta.seconds/60))
-        except:
+        except Exception as e:
+            print(e)
             pass
 
         await asyncio.sleep(60)  # task runs every 60 seconds
