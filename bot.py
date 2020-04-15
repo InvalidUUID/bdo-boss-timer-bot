@@ -43,7 +43,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     await channel.send(embed=embed)
 
 
-file = io.open("boss_schedule.txt", "r").read()
+file = io.open('boss_schedule.txt', 'r').read()
 boss_schedule = eval(file)
 
 with open('boss_strings.json', 'r') as boss_strings:
@@ -149,6 +149,8 @@ async def nextboss(ctx):
 
 @bot.event
 async def background_task(channel, guild, role):
+    print('Background task starting....')
+    print('Background task waiting...')
     await bot.wait_until_ready()
     print('Bot is ready')
     while not bot.is_closed():
@@ -178,5 +180,6 @@ async def background_task(channel, guild, role):
             await print_boss_message(boss_names, role, channel, int(delta.seconds/60))
 
         await asyncio.sleep(60)  # task runs every 60 seconds
+    print('Background task closing!!!!!')
 
 bot.run(token)
