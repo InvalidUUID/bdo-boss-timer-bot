@@ -59,9 +59,6 @@ token = getenv('BOT_TOKEN')
 
 channel_id = int(getenv('CHANNEL_ID'))
 guild_id = int(getenv('GUILD_ID'))
-guild = None
-channel = None
-role = None
 
 @bot.event
 async def on_ready():
