@@ -57,6 +57,11 @@ description = 'A Bot for managing Boss Spawn Alerts for Black Desert Online'
 bot = commands.Bot(command_prefix='.', description=description)
 token = getenv('BOT_TOKEN')
 
+channel_id = int(getenv('CHANNEL_ID'))
+guild_id = int(getenv('GUILD_ID'))
+guild = None
+channel = None
+role = None
 
 @bot.event
 async def on_ready():
@@ -69,6 +74,12 @@ async def on_ready():
     print('I\'m currently on the following server(s): ')
     for guild in bot.guilds:
         print(guild)
+        if guild.id == guild_id:
+            channel = discord.utils.get(guild.channels, id=channel_id)
+            role = discord.utils.get(guild.roles, name='Boss Timer')
+            bot.bg_task = bot.loop.create_task(background_task(channel, guild, role))
+        
+    
 
 
 @bot.command()
