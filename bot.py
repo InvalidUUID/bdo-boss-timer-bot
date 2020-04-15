@@ -60,6 +60,7 @@ token = getenv('BOT_TOKEN')
 channel_id = int(getenv('CHANNEL_ID'))
 guild_id = int(getenv('GUILD_ID'))
 
+
 @bot.event
 async def on_ready():
     print('Bot ID is: [', bot.user.id, ']')
