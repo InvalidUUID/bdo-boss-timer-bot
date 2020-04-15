@@ -78,8 +78,6 @@ async def on_ready():
             channel = discord.utils.get(guild.channels, id=channel_id)
             role = discord.utils.get(guild.roles, name='Boss Timer')
             bot.bg_task = bot.loop.create_task(background_task(channel, guild, role))
-        
-    
 
 
 @bot.command()
@@ -160,8 +158,6 @@ async def nextboss(ctx):
 
 @bot.event
 async def background_task(channel, guild, role):
-    print('Background task starting....')
-    print('Background task waiting...')
     await bot.wait_until_ready()
     print('Bot is ready')
     while not bot.is_closed():
@@ -177,6 +173,7 @@ async def background_task(channel, guild, role):
             if current_hour < hour <= current_hour_p5:
                 delta = strptime(hour, "%H:%M") - strptime(current_hour, "%H:%M")
                 next_boss_spawn = boss_schedule[hour][current_day]
+                print(next_boss_spawn[0])
                 break
 
         print('The next boss that will spawn is...')
@@ -191,6 +188,5 @@ async def background_task(channel, guild, role):
             await print_boss_message(boss_names, role, channel, int(delta.seconds/60))
 
         await asyncio.sleep(60)  # task runs every 60 seconds
-    print('Background task closing!!!!!')
 
 bot.run(token)
