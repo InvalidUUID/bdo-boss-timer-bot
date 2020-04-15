@@ -170,6 +170,7 @@ async def background_task(channel, guild, role):
 
         next_boss_spawn = []
         for hour in boss_schedule.keys():
+            print('testing.... {hour}'.format(hour=hour))
             if current_hour < hour <= current_hour_p5:
                 delta = strptime(hour, "%H:%M") - strptime(current_hour, "%H:%M")
                 next_boss_spawn = boss_schedule[hour][current_day]
