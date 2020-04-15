@@ -7,11 +7,11 @@ from discord.ext import commands
 from os import getenv
 
 
-async def print_boss_message(boss_name, role, channel, delta):
+async def print_boss_message(boss_name, channel, delta):
     if len(boss_name) == 1:
-        await channel.send('{role.mention} - {boss[0].mention} will spawn in {delta}min'.format(role=role, boss=boss_name, delta=delta))
+        await channel.send('{boss[0].mention} will spawn in {delta}min'.format(boss=boss_name, delta=delta))
     elif len(boss_name) == 2:
-        await channel.send('{role.mention} - {boss[0].mention} and {boss[1].mention} will spawn in {delta}min'.format(role=role, boss=boss_name, delta=delta))
+        await channel.send('{boss[0].mention} and {boss[1].mention} will spawn in {delta}min'.format(boss=boss_name, delta=delta))
 
 
 def join_bosses(bosses):
@@ -74,7 +74,7 @@ async def on_ready():
         if guild.id == guild_id:
             channel = discord.utils.get(guild.channels, id=channel_id)
             role = discord.utils.get(guild.roles, name='Boss Timer')
-            bot.bg_task = bot.loop.create_task(background_task(channel, guild, role))
+            bot.bg_task = bot.loop.create_task(background_task(channel, guild))
 
 
 @bot.command()
@@ -106,8 +106,7 @@ async def setchannel(ctx):
     '''Define what channel the bot will send boss spawn notifications to.'''
     channel = ctx.message.channel
     guild = ctx.message.guild
-    role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
-    bot.bg_task = bot.loop.create_task(background_task(channel, guild, role))
+    bot.bg_task = bot.loop.create_task(background_task(channel, guild))
     await ctx.send('I will send boss notifications to {0.mention}'.format(channel))
 
 
@@ -153,39 +152,40 @@ async def nextboss(ctx):
     await print_next_boss_message(boss_names, hour, channel, is_today)
 
 
+async def check_x_ahead(current_time, time_ahead, channel, guild):
+    current_hour = datetime.strftime(current_time, "%H:%M")
+    current_day = datetime.strftime(current_time, "%a")
+    current_hour_pX = datetime.strftime(current_time + timedelta(minutes=time_ahead), "%H:%M")
+
+    next_boss_spawn = []
+    for hour in boss_schedule.keys():
+        if current_hour < hour == current_hour_pX:
+            delta = datetime.strptime(hour, "%H:%M") - datetime.strptime(current_hour, "%H:%M")
+            next_boss_spawn = boss_schedule[hour][current_day]
+            for boss in next_boss_spawn:
+                print(boss)
+            break
+
+    print('The next boss that will spawn is...')
+
+    if next_boss_spawn:
+        boss_names = []
+
+        for boss in next_boss_spawn:
+            print(boss)
+            boss_names.append((discord.utils.get(guild.roles, name=boss)))
+
+        await print_boss_message(boss_names, channel, int(delta.seconds/60))
+
 @bot.event
-async def background_task(channel, guild, role):
+async def background_task(channel, guild):
     await bot.wait_until_ready()
     print('Bot is ready')
     while not bot.is_closed():
         try:
             current_time = datetime.utcnow()
-            current_hour = datetime.strftime(current_time, "%H:%M")
-            current_hour_p5 = datetime.strftime(current_time + timedelta(minutes=40), "%H:%M")
-            current_day = datetime.strftime(current_time, "%a")
-
-            print('Current day: {current_day} | Current time: {current_time} | Current+5: {current_hour_p5}'.format(current_time=current_hour, current_hour_p5=current_hour_p5, current_day=current_day))
-
-            next_boss_spawn = []
-            for hour in boss_schedule.keys():
-                if current_hour < hour <= current_hour_p5:
-                    delta = datetime.strptime(hour, "%H:%M") - datetime.strptime(current_hour, "%H:%M")
-                    print('i made a delta {delta}'.format(delta=delta) if delta else 'something went wrong')
-                    next_boss_spawn = boss_schedule[hour][current_day]
-                    for boss in next_boss_spawn:
-                        print(boss)
-                    break
-
-            print('The next boss that will spawn is...')
-
-            if next_boss_spawn:
-                boss_names = []
-
-                for boss in next_boss_spawn:
-                    print(boss)
-                    boss_names.append((discord.utils.get(guild.roles, name=boss)))
-
-                await print_boss_message(boss_names, role, channel, int(delta.seconds/60))
+            await check_x_ahead(current_time, 5, channel, guild)
+            await check_x_ahead(current_time, 30, channel, guild)
         except Exception as e:
             print(e)
             pass
