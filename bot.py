@@ -20,11 +20,6 @@ async def print_boss_message(boss_name, channel, delta):
             .format(boss=boss_name, delta=delta))
 
 
-def join_bosses(bosses):
-    '''Build the combined boss name'''
-    return list(map(lambda boss: boss['name'], bosses))
-
-
 def boss_descrip(boss):
     '''Build the boss description'''
     return str('Spawns at {location}'.format(location=boss['location']))
@@ -43,7 +38,6 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
 
     embed = discord.Embed(timestamp=when)
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
-    embed.set_author(name=" & ".join(join_bosses(boss_name)))
     embed.set_thumbnail(url=boss_name[0]['avatar'])
     for boss in boss_name:
         embed.add_field(
