@@ -210,6 +210,7 @@ async def setup(ctx):
 @BOT.command()
 async def cleanup(ctx):
     '''Remove roles from your server that the bot created to notify members about boss spawns.'''
+    # command logic goes here
 
 
 async def check_x_ahead(current_time, time_ahead, channel, guild):
