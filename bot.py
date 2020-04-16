@@ -190,7 +190,13 @@ async def nextboss(ctx):
 @BOT.command()
 async def setup(ctx):
     '''Adds roles to your server that the bot will use to notify members about boss spawns.'''
-    # insert command logic here
+    for name in BOSS_DATA:
+        role = discord.utils.get(ctx.guild.roles, name=name)
+        if role is None:
+            guild = ctx.guild
+            await guild.create_role(name=name)
+        else:
+            await ctx.send('A {role} role already exists.')
 
 
 async def check_x_ahead(current_time, time_ahead, channel, guild):
