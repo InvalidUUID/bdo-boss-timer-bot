@@ -103,12 +103,12 @@ async def ping(ctx):
 async def addme(ctx, *, boss_name):
     '''Adds you to the notification list for when a specific boss spawns.'''
     user = ctx.message.author
-    if BOSS_DATA[boss_name]:
+    try:
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
         await user.add_roles(role)
         await ctx.send('You will be notified when **{boss_name}** spawns :)'.format(boss_name=boss_name))
-    else:
-        ctx.send('I could not find a boss name in your message. Please check that you\'ve spelled the boss name correctly and try again.')
+    except KeyError:
+        ctx.send('Please check that you\'ve spelled the boss name correctly and try again.')
     # user = ctx.message.author
     # role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     # await user.add_roles(role)
@@ -119,12 +119,12 @@ async def addme(ctx, *, boss_name):
 async def removeme(ctx, *, boss_name):
     '''Removes you from notification list for when a boss spawns.'''
     user = ctx.message.author
-    if BOSS_DATA[boss_name]:
+    try:
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
         await user.remove_roles(role)
         await ctx.send('You will no longer be notified when **{boss_name}** spawns :('.format(boss_name=boss_name))
-    else:
-        ctx.send('I could not find a boss name in your message. Please check that you\'ve spelled the boss name correctly and try again.')
+    except KeyError:
+        ctx.send('Please check that you\'ve spelled the boss name correctly and try again.')
     # role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     # await user.remove_roles(role)
     # await ctx.send('You will no longer be notified when the next boss spawns :(')
@@ -179,6 +179,12 @@ async def nextboss(ctx):
         boss_names.append(BOSS_DATA[boss])
 
     await print_next_boss_message(boss_names, hour, channel, is_today)
+
+
+@BOT.command()
+async def setup(ctx):
+    '''Adds roles to your server that the bot will use to notify members about boss spawns.'''
+    # insert command logic here
 
 
 async def check_x_ahead(current_time, time_ahead, channel, guild):
