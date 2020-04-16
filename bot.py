@@ -123,7 +123,7 @@ async def removeme(ctx, *, boss_name):
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
         await user.remove_roles(role)
         await ctx.send('You will no longer be notified when {boss_name} spawns :('.format(boss_name=boss_name))
-     else:
+    else:
         ctx.send('Bad boss!')
     # role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     # await user.remove_roles(role)
