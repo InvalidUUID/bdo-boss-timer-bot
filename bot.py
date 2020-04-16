@@ -106,7 +106,7 @@ async def notifyme(ctx, *, boss_name):
     if BOSS_DATA[boss_name]:
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
         await user.add_roles(role)
-        await ctx.send('You will be notified when {boss_name} spawns.', boss_name=boss_name)
+        await ctx.send('You will be notified when {boss_name} spawns.'.format(boss_name=boss_name))
     else:
         ctx.send('Bad boss!')
     # user = ctx.message.author
@@ -122,8 +122,8 @@ async def removeme(ctx, *, boss_name):
     if BOSS_DATA[boss_name]:
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
         await user.remove_roles(role)
-        await ctx.send('You will no longer be notified when {boss_name} spawns :(', boss_name=boss_name)
-    else:
+        await ctx.send('You will no longer be notified when {boss_name} spawns :('.format(boss_name=boss_name))
+     else:
         ctx.send('Bad boss!')
     # role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     # await user.remove_roles(role)
