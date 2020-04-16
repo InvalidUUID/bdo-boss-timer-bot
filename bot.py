@@ -170,6 +170,7 @@ async def stopnotifs(ctx):
 async def nextboss(ctx):
     '''Tells you which boss spawns next, and at what time it will spawn.'''
     try:
+        print('running nextboss...')
         channel = ctx.message.channel
 
         current_time = datetime.utcnow()
