@@ -45,7 +45,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
         embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
 
     # then a blank line to force inline to wrap
-     embed.add_field(name='\u200b', value='\u200b', inline=False)
+    embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # Then fight recommendations
     for boss in boss_name:
@@ -54,7 +54,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
                             link=boss['link']), inline=True)
 
     # another separator
-     embed.add_field(name='\u200b', value='\u200b', inline=False)
+    embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # then drops
     for boss in boss_name:
