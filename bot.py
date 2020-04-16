@@ -35,7 +35,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     # need to convert utc "boss_time" time of day to be either that time today,
     #   or that time tomorrow
     # split boss_time from HH:MM into ['HH', 'MM'] and then into [HH, MM] as ints
-    boss_time_tokens = list(map(lambda t: int(t), boss_time.split(':')))
+    boss_time_tokens = list(map(int, boss_time.split(':')))
     # use boolean to advance time, if needed
     when = datetime.utcnow() + timedelta(days=(0 if is_today else 1))
     # force boss_time onto when
