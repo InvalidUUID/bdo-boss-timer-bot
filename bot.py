@@ -50,7 +50,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     # Then fight recommendations
     for boss in boss_name:
         embed.add_field(name='Recommendations', value=boss['recommendations']
-                        + '\n:link: [{description}]({link})'.format(
+                        + '\n\n\:link: [{description}]({link})'.format(
                             description=boss['description'], link=boss['link']), inline=True)
 
     # another separator
