@@ -41,7 +41,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_thumbnail(url=boss_name[0]['avatar'])
 
     for boss in boss_name:
-        embed.add_field(name=boss['name'], value='{spawn}\n\n__Recommendations:__\n{recommendations}\n\n__Valuable Drops:__\n{drops}\n\n:link: [More Boss Info]({link})'
+        embed.add_field(name=boss['name'], value='{spawn}\n\n__Recommendations:__\n{recommendations}\n\n__Valuable Drops:__\n{drops}\n:link: [More Boss Info]({link})'
             .format(
                 spawn=boss_descrip(boss), recommendations=boss['recommendations'], link=boss['link'], drops=boss['drops']
             ), inline=False)
