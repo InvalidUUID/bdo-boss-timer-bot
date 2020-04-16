@@ -44,7 +44,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
         embed.add_field(name=boss['name'], value='{spawn}\n\n__Recommendations:__\n{recommendations}\n\n__Valuable Drops:__\n{drops}\n:link: [More Boss Info]({link})'
             .format(
                 spawn=boss_descrip(boss), recommendations=boss['recommendations'], link=boss['link'], drops=boss['drops']
-            ), inline=False)
+            ), inline=True)
 
 
     # Add all the boss information, first names & spawn locations
