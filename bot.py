@@ -40,27 +40,34 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_thumbnail(url=boss_name[0]['avatar'])
 
-    # Add all the boss information, first names & spawn locations
     for boss in boss_name:
-        embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
+        embed.add_field(name=boss['name'], value='{spawn}\n\n**Recommendations:**\n{recommendations}\n\n**Valuable Drops:**\n{drops}\n\n:link: [More Boss Info]({link})'
+            .format(
+                spawn=boss_descrip(boss), recommendations=boss['recommendations'], link=boss['link'], drops=boss['drops']
+            ), inline=False)
+
+
+    # Add all the boss information, first names & spawn locations
+    # for boss in boss_name:
+    #     embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
 
     # then a blank line to force inline to wrap
-    embed.add_field(name='\u200b', value='\u200b', inline=False)
+    # embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # Then fight recommendations
-    for boss in boss_name:
-        embed.add_field(name='Recommendations', value=boss['recommendations']
-                        + '\n:link: [More Boss Info]({link})'.format(
-                            link=boss['link']), inline=True)
+    # for boss in boss_name:
+    #     embed.add_field(name='Recommendations', value=boss['recommendations']
+    #                     + '\n:link: [More Boss Info]({link})'.format(
+    #                         link=boss['link']), inline=True)
 
     # another separator
-    embed.add_field(name='\u200b', value='\u200b', inline=False)
+    # embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # then drops
-    for boss in boss_name:
-        embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
+    # for boss in boss_name:
+    #     embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
 
-    await channel.send(embed=embed)
+    # await channel.send(embed=embed)
 
 
 BOSS_SCHEDULE = json.loads(io.open('boss_schedule.json', 'r').read())
@@ -190,7 +197,18 @@ async def nextboss(ctx):
 @BOT.command()
 async def setup(ctx):
     '''Adds roles to your server that the bot will use to notify members about boss spawns.'''
-    # insert command logic here
+    for name in BOSS_DATA:
+        role = discord.utils.get(ctx.guild.roles, name=name)
+        if role is None:
+            guild = ctx.guild
+            await guild.create_role(name=name)
+        else:
+            await ctx.send('A {role} role already exists.')
+
+
+@BOT.command()
+async def cleanup(ctx):
+    '''Remove roles from your server that the bot created to notify members about boss spawns.'''
 
 
 async def check_x_ahead(current_time, time_ahead, channel, guild):
