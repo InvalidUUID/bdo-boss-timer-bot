@@ -106,7 +106,7 @@ async def notifyme(ctx, *, boss_name):
     if BOSS_DATA[boss_name]:
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
         await user.add_roles(role)
-        await ctx.send('You will be notified when {boss_name} spawns.:)'.format(boss_name=boss_name))
+        await ctx.send('You will be notified when {boss_name} spawns :)'.format(boss_name=boss_name))
     else:
         ctx.send('Bad boss!')
     # user = ctx.message.author
