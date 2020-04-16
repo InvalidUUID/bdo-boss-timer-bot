@@ -191,7 +191,7 @@ async def nextboss(ctx):
     for boss in next_boss_spawn:
         boss_names.append(BOSS_DATA[boss])
     await print_next_boss_message(boss_names, hour, channel, is_today)
-    print(ctx.message.author + ' executed nextboss command... waiting for embed logic')
+    print(ctx.message.author, ' executed nextboss command... waiting for embed logic')
 
 
 @BOT.command()
