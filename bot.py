@@ -40,31 +40,35 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_thumbnail(url=boss_name[0]['avatar'])
 
-    field_num = 0
+    # field_num = 0
 
     # Add all the boss information, first names & spawn locations
     for boss in boss_name:
         field_num += 1
-        embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=field_num % 2 == 0)
+        embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
+        embed.add_field(name='Recommendations', value=boss['recommendations']
+                        + '\n\n:link: [More Info]({link})'.format(
+                            link=boss['link']), inline=True)
+        embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
 
     # then a blank line to force inline to wrap
     # embed.add_field(name='\u200b', value='\u200b', inline=False)
 
-    field_num = 0
+    # field_num = 0
 
     # Then fight recommendations
-    for boss in boss_name:
-        field_num += 1
-        embed.add_field(name='Recommendations', value=boss['recommendations']
-                        + '\n\n\:link: [More Info]({link})'.format(
-                            link=boss['link']), inline=field_num % 2 == 0)
+    # for boss in boss_name:
+    #     field_num += 1
+    #     embed.add_field(name='Recommendations', value=boss['recommendations']
+    #                     + '\n\n:link: [More Info]({link})'.format(
+    #                         link=boss['link']), inline=field_num % 2 == 0)
 
     # another separator
     #  embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # then drops
-    for boss in boss_name:
-        embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
+    # for boss in boss_name:
+    #     embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
 
     await channel.send(embed=embed)
 
