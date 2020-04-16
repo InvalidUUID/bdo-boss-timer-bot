@@ -40,32 +40,32 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_thumbnail(url=boss_name[0]['avatar'])
 
-    for boss in boss_name:
-        embed.add_field(name='\u200b', value='**{name}**\n{spawn}\n\n**Recommendations:**\n{recommendations}\n:link: [More Boss Info]({link})\n\n**Valuable Drops:**\n{drops}'
-            .format(
-                name=boss['name'], spawn=boss_descrip(boss), recommendations=boss['recommendations'], link=boss['link'], drops=boss['drops']
-            ), inline=True)
-
+    # Markdown variation of the embed
+    # for boss in boss_name:
+    #     embed.add_field(name=boss['name'], value='{spawn}\n\n**Recommendations:**\n{recommendations}\n:link: [More Boss Info]({link})\n\n**Valuable Drops:**\n{drops}'
+    #         .format(
+    #             spawn=boss_descrip(boss), recommendations=boss['recommendations'], link=boss['link'], drops=boss['drops']
+    #         ), inline=True)
 
     # Add all the boss information, first names & spawn locations
-    # for boss in boss_name:
-    #     embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
+    for boss in boss_name:
+        embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
 
     # then a blank line to force inline to wrap
-    # embed.add_field(name='\u200b', value='\u200b', inline=False)
+    embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # Then fight recommendations
-    # for boss in boss_name:
-    #     embed.add_field(name='Recommendations', value=boss['recommendations']
-    #                     + '\n:link: [More Boss Info]({link})'.format(
-    #                         link=boss['link']), inline=True)
+    for boss in boss_name:
+        embed.add_field(name='Recommendations', value=boss['recommendations']
+                        + '\n:link: [More Boss Info]({link})'.format(
+                            link=boss['link']), inline=True)
 
     # another separator
-    # embed.add_field(name='\u200b', value='\u200b', inline=False)
+    embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # then drops
-    # for boss in boss_name:
-    #     embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
+    for boss in boss_name:
+        embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
 
     await channel.send(embed=embed)
 
