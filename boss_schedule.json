@@ -27,7 +27,7 @@
     "Mon":["Kutum","Karanda"],
     "Tue":["Karanda"],
     "Wed":["Kutum","Kzarka"],
-    "Thu":["Nouver"],
+    "Thu":["Kzarka","Karanda"],
     "Fri":["Kzarka","Karanda"],
     "Sat":["Karanda"],
     "Sun":["Nouver","Kutum"]},
