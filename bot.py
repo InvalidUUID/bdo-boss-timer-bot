@@ -67,7 +67,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     # for boss in boss_name:
     #     embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
 
-    # await channel.send(embed=embed)
+    await channel.send(embed=embed)
 
 
 BOSS_SCHEDULE = json.loads(io.open('boss_schedule.json', 'r').read())
@@ -209,14 +209,11 @@ async def setup(ctx):
             await guild.create_role(name=name)
         else:
             await ctx.send('A {role} role already exists.')
-<<<<<<< HEAD
-=======
 
 
 @BOT.command()
 async def cleanup(ctx):
     '''Remove roles from your server that the bot created to notify members about boss spawns.'''
->>>>>>> 08d115580011d2babead34ad51eb9cb07707b794
 
 
 async def check_x_ahead(current_time, time_ahead, channel, guild):
