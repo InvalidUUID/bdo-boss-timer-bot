@@ -22,7 +22,7 @@ async def print_boss_message(boss_name, channel, delta):
 
 def boss_descrip(boss):
     '''Build the boss description'''
-    return str('Spawns at {location}'.format(location=boss['location']))
+    return str('@{location}'.format(location=boss['location']))
 
 
 async def print_next_boss_message(boss_name, boss_time, channel, is_today):
@@ -36,7 +36,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     # force boss_time onto when
     when = when.replace(hour=boss_time_tokens[0], minute=boss_time_tokens[1])
 
-    embed = discord.Embed(timestamp=when)
+    embed = discord.Embed(timestamp=when, color=boss_name[0].color)
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_thumbnail(url=boss_name[0]['avatar'])
 
