@@ -8,23 +8,32 @@ from os import getenv
 
 
 async def print_boss_message(boss_name, channel, delta):
+    '''Print the "boss is spawning" notification'''
     if len(boss_name) == 1:
-        await channel.send('{boss[0].mention} spawns in {delta} minutes'.format(boss=boss_name, delta=delta))
+        await channel.send('{boss[0].mention} spawns in {delta} minutes'.format(
+            boss=boss_name, delta=delta))
     elif len(boss_name) == 2:
-        await channel.send('{boss[0].mention} and {boss[1].mention} will spawn in {delta} minutes'.format(boss=boss_name, delta=delta))
+        await channel.send(
+            '{boss[0].mention} and {boss[1].mention} will spawn in {delta} minutes'
+            .format(boss=boss_name, delta=delta))
 
 
 def join_bosses(bosses):
+    '''Build the combined boss name'''
     return list(map(lambda boss: boss['name'], bosses))
 
 
 def boss_descrip(boss):
+    '''Build the boss description'''
     return str('Spawns at {location}'.format(location=boss['location']))
 
 
 async def print_next_boss_message(boss_name, boss_time, channel, is_today):
-    # need to convert utc "boss_time" time of day to be either that time today, or that time tomorrow
-    # split boss_time from HH:MM into ['HH', 'MM'] and then into [HH, MM] as ints
+    '''Prints the bot embed for the nextboss command'''
+    # need to convert utc "boss_time" time of day to be either that time today,
+    #   or that time tomorrow
+    # split boss_time from HH:MM into ['HH', 'MM']
+    #   and then into [HH, MM] as ints
     boss_time_tokens = list(map(lambda t: int(t), boss_time.split(':')))
     # use boolean to advance time, if needed
     when = datetime.utcnow() + timedelta(days=(0 if is_today else 1))
@@ -36,55 +45,60 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_author(name=" & ".join(join_bosses(boss_name)))
     embed.set_thumbnail(url=boss_name[0]['avatar'])
     for boss in boss_name:
-        embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
+        embed.add_field(
+            name=boss['name'], value=boss_descrip(boss), inline=True)
     embed.add_field(name='\u200b', value='\u200b', inline=False)
     for boss in boss_name:
-        embed.add_field(name='Recommendations', value=boss['recommendations'], inline=True)
+        embed.add_field(
+            name='Recommendations', value=boss['recommendations'], inline=True)
     await channel.send(embed=embed)
 
 
-file = io.open('boss_schedule.txt', 'r').read()
-boss_schedule = eval(file)
+FILE = io.open('boss_schedule.txt', 'r').read()
+BOSS_SCHEDULE = json.loads(FILE)
 
 with open('boss_strings.json', 'r') as boss_strings:
-    data = boss_strings.read()
+    DATA = boss_strings.read()
 
 
-boss_data = json.loads(data)
+BOSS_DATA = json.loads(DATA)
 
 
-description = 'A Bot for managing Boss Spawn Alerts for Black Desert Online'
-bot = commands.Bot(command_prefix='.', description=description)
-token = getenv('BOT_TOKEN')
+DESCRIPTION = 'A Bot for managing Boss Spawn Alerts for Black Desert Online'
+BOT = commands.Bot(command_prefix='.', description=DESCRIPTION)
+TOKEN = getenv('BOT_TOKEN')
 
-channel_id = int(getenv('CHANNEL_ID'))
-guild_id = int(getenv('GUILD_ID'))
+CHANNEL_ID = int(getenv('CHANNEL_ID'))
+GUILD_ID = int(getenv('GUILD_ID'))
 
 
-@bot.event
+@BOT.event
 async def on_ready():
-    print('Bot ID is: [', bot.user.id, ']')
-    print('Bot Name is: [', bot.user.name, ']')
+    '''
+    Print that the bot is ready when it's done building,
+    and assign settings from env vars
+    '''
+    print('Bot ID is: [', BOT.user.id, ']')
+    print('Bot Name is: [', BOT.user.name, ']')
     print('───────────────────────────────────────────')
     print('Waiting for build to finish...')
     print('Build completed, bot is now running.')
     print('───────────────────────────────────────────')
     print('I\'m currently on the following server(s): ')
-    for guild in bot.guilds:
+    for guild in BOT.guilds:
         print(guild)
-        if guild.id == guild_id:
-            channel = discord.utils.get(guild.channels, id=channel_id)
-            role = discord.utils.get(guild.roles, name='Boss Timer')
-            bot.bg_task = bot.loop.create_task(background_task(channel, guild))
+        if guild.id == GUILD_ID:
+            channel = discord.utils.get(guild.channels, id=CHANNEL_ID)
+            BOT.bg_task = BOT.loop.create_task(background_task(channel, guild))
 
 
-@bot.command()
+@BOT.command()
 async def ping(ctx):
     '''Ping! Use this to check if the bot is responsiding to commands.'''
     await ctx.send('_pong_')
 
 
-@bot.command()
+@BOT.command()
 async def notifyme(ctx):
     '''Adds you to the notification list for when a boss spawns.'''
     user = ctx.message.author
@@ -93,31 +107,33 @@ async def notifyme(ctx):
     await ctx.send('You will now be notified when the next boss spawns :)')
 
 
-@bot.command()
+@BOT.command()
 async def removeme(ctx):
     '''Removes you from notification list for when a boss spawns.'''
     user = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     await user.remove_roles(role)
-    await ctx.send('You will no longer be notified when the next boss spawns :(')
+    await ctx.send(
+        'You will no longer be notified when the next boss spawns :(')
 
 
-@bot.command()
+@BOT.command()
 async def setchannel(ctx):
     '''Define what channel the bot will send boss spawn notifications to.'''
     channel = ctx.message.channel
     guild = ctx.message.guild
-    bot.bg_task = bot.loop.create_task(background_task(channel, guild))
-    await ctx.send('I will send boss notifications to {0.mention}'.format(channel))
+    BOT.bg_task = BOT.loop.create_task(background_task(channel, guild))
+    await ctx.send(
+        'I will send boss notifications to {0.mention}'.format(channel))
 
 
-@bot.command()
+@BOT.command()
 async def stopnotifs(ctx):
     '''Stop the bot from sending boss spawn notications'''
-    if bot.bg_task:
-        bot.bg_task.cancel()
+    if BOT.bg_task:
+        BOT.bg_task.cancel()
         try:
-            await bot.bg_task
+            await BOT.bg_task
         except asyncio.CancelledError:
             print('Background task was sucessfully stopped.')
         finally:
@@ -125,44 +141,53 @@ async def stopnotifs(ctx):
     await ctx.send('Okay, I\'ll stop sending spawn notifications.')
 
 
-@bot.command()
+@BOT.command()
 async def nextboss(ctx):
     '''Tells you which boss spawns next, and at what time it will spawn.'''
     channel = ctx.message.channel
-    guild = ctx.message.guild
 
     current_time = datetime.utcnow()
     current_hour = datetime.strftime(current_time, "%H:%M")
     current_day = datetime.strftime(current_time, "%a")
     next_day = datetime.strftime(current_time + timedelta(days=1), "%a")
 
-    for hour in boss_schedule.keys():
+    hour = None
+    for hour in BOSS_SCHEDULE.keys():
         if current_hour < hour:
-            next_boss_spawn = boss_schedule[hour][current_day]
+            next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
             is_today = True
             break
         # if there is no boss to spawn on the current day
         # then it should be the first boss of the next day
-        next_boss_spawn = boss_schedule['00:00'][next_day]
+        next_boss_spawn = BOSS_SCHEDULE['00:00'][next_day]
         is_today = False
 
     boss_names = []
     for boss in next_boss_spawn:
-        boss_names.append(boss_data[boss])
+        boss_names.append(BOSS_DATA[boss])
 
     await print_next_boss_message(boss_names, hour, channel, is_today)
 
 
 async def check_x_ahead(current_time, time_ahead, channel, guild):
+    '''Generically check ahead X minutes for the next boss'''
     current_hour = datetime.strftime(current_time, "%H:%M")
     current_day = datetime.strftime(current_time, "%a")
-    current_hour_pX = datetime.strftime(current_time + timedelta(minutes=time_ahead), "%H:%M")
-    # print('Current day: {current_day} | Current time: {current_time} | Current+{x}: {current_hour_pX}'.format(current_time=current_hour, current_hour_pX=current_hour_pX, current_day=current_day, x=time_ahead))
+    current_hour_px = datetime.strftime(
+        current_time + timedelta(minutes=time_ahead), "%H:%M")
+
+    # fmt = 'Current day: {current_day} | Current time: {current_time} ' +
+    #   '| Current+{x}: {current_hour_px}'
+    # print(fmt.format(
+    #   current_time=current_hour, current_hour_px=current_hour_px,
+    #   current_day=current_day, x=time_ahead))
+
     next_boss_spawn = []
-    for hour in boss_schedule.keys():
-        if current_hour < hour == current_hour_pX:
-            delta = datetime.strptime(hour, "%H:%M") - datetime.strptime(current_hour, "%H:%M")
-            next_boss_spawn = boss_schedule[hour][current_day]
+    for hour in BOSS_SCHEDULE.keys():
+        if current_hour < hour == current_hour_px:
+            delta = datetime.strptime(
+                hour, "%H:%M") - datetime.strptime(current_hour, "%H:%M")
+            next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
             for boss in next_boss_spawn:
                 print(boss)
             break
@@ -178,20 +203,20 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
         await print_boss_message(boss_names, channel, int(delta.seconds/60))
 
 
-@bot.event
+@BOT.event
 async def background_task(channel, guild):
-    await bot.wait_until_ready()
+    '''Background task for checking for the next spawning boss'''
+    await BOT.wait_until_ready()
     print('───────────────────────────────────────────')
     print('Bot is Ready, background task is running')
-    while not bot.is_closed():
+    while not BOT.is_closed():
         try:
             current_time = datetime.utcnow()
             await check_x_ahead(current_time, 5, channel, guild)
             await check_x_ahead(current_time, 30, channel, guild)
-        except Exception as e:
-            print(e)
-            pass
+        except Exception as exception:
+            print(exception)
 
         await asyncio.sleep(60)  # task runs every 60 seconds
 
-bot.run(token)
+BOT.run(TOKEN)
