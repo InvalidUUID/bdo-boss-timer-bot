@@ -1,10 +1,12 @@
+'''Main bot file!!~!~!!!'''
+
 import asyncio
-import discord
+from os import getenv
 import io
 import json
 from datetime import datetime, timedelta
+import discord
 from discord.ext import commands
-from os import getenv
 
 
 async def print_boss_message(boss_name, channel, delta):
@@ -32,8 +34,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     '''Prints the bot embed for the nextboss command'''
     # need to convert utc "boss_time" time of day to be either that time today,
     #   or that time tomorrow
-    # split boss_time from HH:MM into ['HH', 'MM']
-    #   and then into [HH, MM] as ints
+    # split boss_time from HH:MM into ['HH', 'MM'] and then into [HH, MM] as ints
     boss_time_tokens = list(map(lambda t: int(t), boss_time.split(':')))
     # use boolean to advance time, if needed
     when = datetime.utcnow() + timedelta(days=(0 if is_today else 1))
@@ -54,16 +55,8 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     await channel.send(embed=embed)
 
 
-FILE = io.open('boss_schedule.txt', 'r').read()
-BOSS_SCHEDULE = json.loads(FILE)
-
-with open('boss_strings.json', 'r') as boss_strings:
-    DATA = boss_strings.read()
-
-
-BOSS_DATA = json.loads(DATA)
-
-
+BOSS_SCHEDULE = json.loads(io.open('boss_schedule.json', 'r').read())
+BOSS_DATA = json.loads(io.open('boss_strings.json', 'r').read())
 DESCRIPTION = 'A Bot for managing Boss Spawn Alerts for Black Desert Online'
 BOT = commands.Bot(command_prefix='.', description=DESCRIPTION)
 TOKEN = getenv('BOT_TOKEN')
