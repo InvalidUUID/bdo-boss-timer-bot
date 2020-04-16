@@ -179,6 +179,7 @@ async def nextboss(ctx):
         next_day = datetime.strftime(current_time + timedelta(days=1), "%a")
 
         hour = None
+        print('checking hours...')
         for hour in BOSS_SCHEDULE.keys():
             if current_hour < hour:
                 next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
@@ -188,7 +189,7 @@ async def nextboss(ctx):
             # then it should be the first boss of the next day
             next_boss_spawn = BOSS_SCHEDULE['00:00'][next_day]
             is_today = False
-
+        print('checking names...')
         boss_names = []
         for boss in next_boss_spawn:
             boss_names.append(BOSS_DATA[boss])
