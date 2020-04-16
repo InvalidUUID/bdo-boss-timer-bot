@@ -1,7 +1,7 @@
 {
   "Kzarka":{
       "name":"Kzarka",
-      "color":"#CC0000",
+      "color":13369344,
       "description":"The Lord of Corruption",
       "location":"Serendia Shrine",
       "recommendations":"lvl 56\n150 AP\n180 DP",
@@ -12,7 +12,7 @@
   "Karanda":{
       "name":"Karanda",
       "description":"Harpy Queen",
-      "color":"#00B2B2",
+      "color":45746,
       "location":"Karanda Ridge",
       "recommendations":"lvl 56\n150 AP\n180 DP",
       "avatar":"https://i.imgur.com/eNfGAqu.png",
@@ -22,7 +22,7 @@
   "Kutum":{
       "name":"Kutum",
       "description":"An ancient life form by the name of Kutum",
-      "color":"#590059",
+      "color":5832793,
       "location":"Scarlet Sand Chamber",
       "recommendations":"lvl 56\n150 AP\n180 DP",
       "avatar":"https://i.imgur.com/W15TFlL.png",
@@ -32,7 +32,7 @@
   "Nouver":{
       "name":"Nouver",
       "description":"A dragon hiding in a sandstorm",
-      "color":"#CCAC00",
+      "color":13413376,
       "location":"Great Desert of Valencia",
       "recommendations":"lvl 56\n150 AP\n180 DP",
       "avatar":"https://i.imgur.com/iwnyMxt.png",
@@ -42,7 +42,7 @@
   "Vell":{
       "name":"Vell",
       "description":"The Heart of the Ocean",
-      "color":"#00E5E5",
+      "color":58853,
       "location":"Vell's Realm",
       "recommendations":"lvl 56\n150 AP\n180 DP\na Ship (Bartali Sailboat or higher)",
       "avatar":"https://i.imgur.com/nmxjEyV.png",
@@ -52,7 +52,7 @@
   "Quint":{
       "name":"Quint",
       "description":"The First Troll",
-      "color":"#737373",
+      "color":7566195,
       "location":"Quint Hill",
       "recommendations":"lvl 56\n150 AP\n180 DP",
       "avatar":"https://i.imgur.com/HLSHnRp.png",
@@ -62,7 +62,7 @@
   "Muraka":{
       "name":"Muraka",
       "description":"The King of Ogres",
-      "color":"#009900",
+      "color":39168,
       "location":"Mansha Forest",
       "recommendations":"lvl 56\n150 AP\n180 DP",
       "avatar":"https://i.imgur.com/ZoGFtCI.png",
@@ -72,7 +72,7 @@
   "Garmoth":{
       "name":"Garmoth",
       "description":"The Crimson Dragon",
-      "color":"#CC8400",
+      "color":13403136,
       "location":"Garmoth's Nest",
       "recommendations":"lvl 56\n150 AP\n250 DP",
       "avatar":"https://i.imgur.com/2MUA1dn.png",
@@ -82,7 +82,7 @@
   "Offin":{
       "name":"Offin",
       "description":"Mirumok Destroyer",
-      "color":"#FFFF7F",
+      "color":16777087,
       "location":"Holo Forest",
       "recommendations":"lvl 56\n150 AP\n250 DP\n*Getting killed by Offin will result in loss of XP and Crystals*",
       "avatar":"https://i.imgur.com/zFuKRZt.png",
