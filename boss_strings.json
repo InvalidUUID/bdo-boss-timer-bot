@@ -1,14 +1,4 @@
-{
-  "Kzarka":{
-      "name":"Kzarka",
-      "color":13369344,
-      "description":"The Lord of Corruption",
-      "location":"Serendia Shrine",
-      "recommendations":"Level 56\n150 AP, 180 DP",
-      "avatar":"https://i.imgur.com/KoGfDQT.png",
-      "drops":"Kzarka's Sealed Weapon Box\nBelongings of an Adventurer",
-      "link":"https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
-    },
+{  
   "Karanda":{
       "name":"Karanda",
       "description":"Harpy Queen",
@@ -18,6 +8,16 @@
       "avatar":"https://i.imgur.com/eNfGAqu.png",
       "drops":"Dandelion Weapon Box\nBelongings of an Adventurer",
       "link":"https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.8bytbiwuq0ap"
+    },
+  "Kzarka":{
+      "name":"Kzarka",
+      "color":13369344,
+      "description":"The Lord of Corruption",
+      "location":"Serendia Shrine",
+      "recommendations":"Level 56\n150 AP, 180 DP",
+      "avatar":"https://i.imgur.com/KoGfDQT.png",
+      "drops":"Kzarka's Sealed Weapon Box\nBelongings of an Adventurer",
+      "link":"https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Kutum":{
       "name":"Kutum",
