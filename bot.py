@@ -39,13 +39,27 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed = discord.Embed(timestamp=when)
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_thumbnail(url=boss_name[0]['avatar'])
+
+    # Add all the boss information, first names & spawn locations
     for boss in boss_name:
-        embed.add_field(
-            name=boss['name'], value=boss_descrip(boss), inline=True)
+        embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
+
+    # then a blank line to force inline to wrap
     embed.add_field(name='\u200b', value='\u200b', inline=False)
+
+    # Then fight recommendations
     for boss in boss_name:
-        embed.add_field(
-            name='Recommendations', value=boss['recommendations'], inline=True)
+        embed.add_field(name='Recommendations', value=boss['recommendations']
+                        + '\n:link: [{description}]({link})'.format(
+                            description=boss['description'], link=boss['link']), inline=True)
+
+    # another separator
+    embed.add_field(name='\u200b', value='\u200b', inline=False)
+
+    # then drops
+    for boss in boss_name:
+        embed.add_field(name='Drops', value=boss['drops'], inline=True)
+
     await channel.send(embed=embed)
 
 
@@ -100,8 +114,7 @@ async def removeme(ctx):
     user = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
     await user.remove_roles(role)
-    await ctx.send(
-        'You will no longer be notified when the next boss spawns :(')
+    await ctx.send('You will no longer be notified when the next boss spawns :(')
 
 
 @BOT.command()
@@ -110,8 +123,7 @@ async def setchannel(ctx):
     channel = ctx.message.channel
     guild = ctx.message.guild
     BOT.bg_task = BOT.loop.create_task(background_task(channel, guild))
-    await ctx.send(
-        'I will send boss notifications to {0.mention}'.format(channel))
+    await ctx.send('I will send boss notifications to {0.mention}'.format(channel))
 
 
 @BOT.command()
@@ -160,8 +172,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
     '''Generically check ahead X minutes for the next boss'''
     current_hour = datetime.strftime(current_time, "%H:%M")
     current_day = datetime.strftime(current_time, "%a")
-    current_hour_px = datetime.strftime(
-        current_time + timedelta(minutes=time_ahead), "%H:%M")
+    current_hour_px = datetime.strftime(current_time + timedelta(minutes=time_ahead), "%H:%M")
 
     # fmt = 'Current day: {current_day} | Current time: {current_time} ' +
     #   '| Current+{x}: {current_hour_px}'
@@ -172,8 +183,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
     next_boss_spawn = []
     for hour in BOSS_SCHEDULE.keys():
         if current_hour < hour == current_hour_px:
-            delta = datetime.strptime(
-                hour, "%H:%M") - datetime.strptime(current_hour, "%H:%M")
+            delta = datetime.strptime(hour, "%H:%M") - datetime.strptime(current_hour, "%H:%M")
             next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
             for boss in next_boss_spawn:
                 print(boss)

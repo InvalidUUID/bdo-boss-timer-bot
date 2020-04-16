@@ -3,63 +3,81 @@
       "name":"Kzarka",
       "description":"The Lord of Corruption",
       "location":"Serendia Shrine",
-      "recommendations":"Level 56, 150 AP, 180 DP\n\n**Key Drops**: Kzarka's Sealed Weapon Box, Belongings of an Adventurer",
-      "avatar": "https://i.imgur.com/KoGfDQT.png"
+      "recommendations":"Level 56, 150 AP, 180 DP",
+      "avatar": "https://i.imgur.com/KoGfDQT.png",
+      "drops": "Kzarka's Sealed Weapon Box, Belongings of an Adventurer",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Karanda":{
       "name":"Karanda",
       "description":"Harpy Queen",
       "location":"Karanda Ridge",
-      "recommendations":"Level 56, 150 AP, 180 DP\n\n**Key Drops**: Dandelion Weapon Box, Belongings of an Adventurer",
-      "avatar": "https://i.imgur.com/eNfGAqu.png"
+      "recommendations":"Level 56, 150 AP, 180 DP",
+      "avatar": "https://i.imgur.com/eNfGAqu.png",
+      "drops": "Dandelion Weapon Box, Belongings of an Adventurer",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Kutum":{
       "name":"Kutum",
       "description":"An ancient life form by the name of Kutum",
       "location":"Scarlet Sand Chamber",
-      "recommendations":"Level 56, 150 AP, 180 DP\n\n**Key Drops**: Kutum's Sealed Sub-weapon Box, Belongings of an Adventurer",
-      "avatar": "https://i.imgur.com/W15TFlL.png"
+      "recommendations":"Level 56, 150 AP, 180 DP",
+      "avatar": "https://i.imgur.com/W15TFlL.png",
+      "drops": "Kutum's Sealed Sub-weapon Box, Belongings of an Adventurer",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Nouver":{
       "name":"Nouver",
       "description":"A dragon hiding in a sandstorm",
       "location":"Great Desert of Valencia",
-      "recommendations":"Level 56, 150 AP, 180 DP\n\n**Key Drops**: Nouver's Sealed Sub-weapon Box, Belongings of an Adventurer",
-      "avatar": "https://i.imgur.com/iwnyMxt.png"
+      "recommendations":"Level 56, 150 AP, 180 DP",
+      "avatar": "https://i.imgur.com/iwnyMxt.png",
+      "drops": "Nouver's Sealed Sub-weapon Box, Belongings of an Adventurer",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Vell":{
       "name":"Vell",
       "description":"The Heart of the Ocean",
       "location":"Vell's Realm",
-      "recommendations":"Level 56, 150 AP, 180 DP, a ship (Bartali Sailboat or higher)\n\n**Key Drops**: Vell's Heart, Vell's Concentrated Magic",
-      "avatar": "https://i.imgur.com/nmxjEyV.png"
+      "recommendations":"Level 56, 150 AP, 180 DP, a Ship (Bartali Sailboat or higher)",
+      "avatar": "https://i.imgur.com/nmxjEyV.png",
+      "drops": "Vell's Heart, Vell's Concentrated Magic",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Quint":{
       "name":"Quint",
       "description":"The First Troll",
       "location":"Quint Hill",
-      "recommendations":"Level 56, 150 AP, 180 DP\n\n**Key Drops**: Belongings of an Adventurer",
-      "avatar": "https://i.imgur.com/HLSHnRp.png"
+      "recommendations":"Level 56, 150 AP, 180 DP",
+      "avatar": "https://i.imgur.com/HLSHnRp.png",
+      "drops": "Belongings of an Adventurer",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Muraka":{
       "name":"Muraka",
       "description":"The King of Ogres",
       "location":"Mansha Forest",
-      "recommendations":"Level 56, 150 AP, 180 DP\n\n**Key Drops**: Belongings of an Adventurer",
-      "avatar": "https://i.imgur.com/ZoGFtCI.png"
+      "recommendations":"Level 56, 150 AP, 180 DP",
+      "avatar": "https://i.imgur.com/ZoGFtCI.png",
+      "drops": "Belongings of an Adventurer",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Garmoth":{
       "name":"Garmoth",
       "description":"The Crimson Dragon",
       "location":"Garmoth's Nest",
-      "recommendations":"Level 56, 150 AP, 250 DP\n\n**Key Drops**: Garmoth's Heart, Garmoth's Horn, Caphras Stone Bundle, Combined Magic Crystal - Gervish/Hoom/Macalod, Belongings of an Adventurer",
-      "avatar": "https://i.imgur.com/2MUA1dn.png"
+      "recommendations":"Level 56, 150 AP, 250 DP",
+      "avatar": "https://i.imgur.com/2MUA1dn.png",
+      "drops": "Garmoth's Heart, Garmoth's Horn, Caphras Stone Bundle, Combined Magic Crystal - Gervish/Hoom/Macalod, Belongings of an Adventurer",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     },
   "Offin":{
       "name":"Offin",
       "description":"Mirumok Destroyer",
       "location":"Holo Forest",
-      "recommendations":"Level 56, 150 AP, 250 DP\n*Getting killed by Offin will result in loss of XP and Crystals*\n\n**Key Drops**: Offin Tet's Light Sealed Weapon Box, Valtarra Eclipsed Belt, JIN/BON/WON Magic Crystal - Cobelinus",
-      "avatar": "https://i.imgur.com/zFuKRZt.png"
+      "recommendations":"Level 56, 150 AP, 250 DP\n*Getting killed by Offin will result in loss of XP and Crystals*",
+      "avatar": "https://i.imgur.com/zFuKRZt.png",
+      "drops": "Offin Tet's Light Sealed Weapon Box, Valtarra Eclipsed Belt, JIN/BON/WON Magic Crystal - Cobelinus",
+      "link": "https://docs.google.com/document/d/19O-Ons2uvSkUGawncm9xE2LhcfgEAZ5qsE0_ZhnlzTo/edit#heading=h.2vx6ipz0xdwu"
     }
 }
