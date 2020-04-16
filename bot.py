@@ -169,29 +169,32 @@ async def stopnotifs(ctx):
 @BOT.command()
 async def nextboss(ctx):
     '''Tells you which boss spawns next, and at what time it will spawn.'''
-    channel = ctx.message.channel
+    try:
+        channel = ctx.message.channel
 
-    current_time = datetime.utcnow()
-    current_hour = datetime.strftime(current_time, "%H:%M")
-    current_day = datetime.strftime(current_time, "%a")
-    next_day = datetime.strftime(current_time + timedelta(days=1), "%a")
+        current_time = datetime.utcnow()
+        current_hour = datetime.strftime(current_time, "%H:%M")
+        current_day = datetime.strftime(current_time, "%a")
+        next_day = datetime.strftime(current_time + timedelta(days=1), "%a")
 
-    hour = None
-    for hour in BOSS_SCHEDULE.keys():
-        if current_hour < hour:
-            next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
-            is_today = True
-            break
-        # if there is no boss to spawn on the current day
-        # then it should be the first boss of the next day
-        next_boss_spawn = BOSS_SCHEDULE['00:00'][next_day]
-        is_today = False
+        hour = None
+        for hour in BOSS_SCHEDULE.keys():
+            if current_hour < hour:
+                next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
+                is_today = True
+                break
+            # if there is no boss to spawn on the current day
+            # then it should be the first boss of the next day
+            next_boss_spawn = BOSS_SCHEDULE['00:00'][next_day]
+            is_today = False
 
-    boss_names = []
-    for boss in next_boss_spawn:
-        boss_names.append(BOSS_DATA[boss])
+        boss_names = []
+        for boss in next_boss_spawn:
+            boss_names.append(BOSS_DATA[boss])
 
-    await print_next_boss_message(boss_names, hour, channel, is_today)
+        await print_next_boss_message(boss_names, hour, channel, is_today)
+    except Exception as e:
+        print(e)
 
 
 @BOT.command()
