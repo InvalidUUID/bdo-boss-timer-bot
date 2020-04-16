@@ -203,7 +203,7 @@ async def setup(ctx):
             guild = ctx.guild
             await guild.create_role(name=name)
         else:
-            await ctx.send('A {role} role already exists.')
+            await ctx.send('A {role} role already exists.'.format(role=name))
 
 
 @BOT.command()
