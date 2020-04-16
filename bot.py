@@ -22,7 +22,7 @@ async def print_boss_message(boss_name, channel, delta):
 
 def boss_descrip(boss):
     '''Build the boss description'''
-    return str('@{location}'.format(location=boss['location']))
+    return str('Spawns at {location}'.format(location=boss['location']))
 
 
 async def print_next_boss_message(boss_name, boss_time, channel, is_today):
