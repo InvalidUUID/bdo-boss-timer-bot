@@ -193,7 +193,7 @@ async def nextboss(ctx):
         boss_names = []
         for boss in next_boss_spawn:
             boss_names.append(BOSS_DATA[boss])
-
+        print('Printing message...')
         await print_next_boss_message(boss_names, hour, channel, is_today)
     except Exception as e:
         print(e)
