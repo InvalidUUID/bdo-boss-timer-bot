@@ -68,7 +68,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     #     embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
 
     await channel.send(embed=embed)
-    print('Embed pushed out.')
+    print('Nextboss command exectued, embed pushed out.')
 
 
 BOSS_SCHEDULE = json.loads(io.open('boss_schedule.json', 'r').read())
@@ -191,7 +191,7 @@ async def nextboss(ctx):
     for boss in next_boss_spawn:
         boss_names.append(BOSS_DATA[boss])
     await print_next_boss_message(boss_names, hour, channel, is_today)
-    print(ctx.message.author, ' executed nextboss command... waiting for embed logic')
+    print(ctx.message.author, ' executed nextboss command succesfully.')
 
 
 @BOT.command()
