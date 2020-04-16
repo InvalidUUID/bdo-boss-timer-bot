@@ -40,27 +40,34 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_thumbnail(url=boss_name[0]['avatar'])
 
-    # Add all the boss information, first names & spawn locations
     for boss in boss_name:
-        embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
+        embed.add_field(name=boss['name'], value='{spawn}\n\n**Recommendations:**\n{recommendations}\n\n**Valuable Drops:**\n{drops}\n\n:link: [More Boss Info]({link})'
+            .format(
+                spawn=boss_descrip(boss), recommendations=boss['recommendations'], link=boss['link'], drops=boss['drops']
+            ), inline=False)
+
+
+    # Add all the boss information, first names & spawn locations
+    # for boss in boss_name:
+    #     embed.add_field(name=boss['name'], value=boss_descrip(boss), inline=True)
 
     # then a blank line to force inline to wrap
-    embed.add_field(name='\u200b', value='\u200b', inline=False)
+    # embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # Then fight recommendations
-    for boss in boss_name:
-        embed.add_field(name='Recommendations', value=boss['recommendations']
-                        + '\n:link: [More Boss Info]({link})'.format(
-                            link=boss['link']), inline=True)
+    # for boss in boss_name:
+    #     embed.add_field(name='Recommendations', value=boss['recommendations']
+    #                     + '\n:link: [More Boss Info]({link})'.format(
+    #                         link=boss['link']), inline=True)
 
     # another separator
-    embed.add_field(name='\u200b', value='\u200b', inline=False)
+    # embed.add_field(name='\u200b', value='\u200b', inline=False)
 
     # then drops
-    for boss in boss_name:
-        embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
+    # for boss in boss_name:
+    #     embed.add_field(name='Valuable Drops', value=boss['drops'], inline=True)
 
-    await channel.send(embed=embed)
+    # await channel.send(embed=embed)
 
 
 BOSS_SCHEDULE = json.loads(io.open('boss_schedule.json', 'r').read())
@@ -162,29 +169,34 @@ async def stopnotifs(ctx):
 @BOT.command()
 async def nextboss(ctx):
     '''Tells you which boss spawns next, and at what time it will spawn.'''
-    channel = ctx.message.channel
+    try:
+        print('running nextboss...')
+        channel = ctx.message.channel
 
-    current_time = datetime.utcnow()
-    current_hour = datetime.strftime(current_time, "%H:%M")
-    current_day = datetime.strftime(current_time, "%a")
-    next_day = datetime.strftime(current_time + timedelta(days=1), "%a")
+        current_time = datetime.utcnow()
+        current_hour = datetime.strftime(current_time, "%H:%M")
+        current_day = datetime.strftime(current_time, "%a")
+        next_day = datetime.strftime(current_time + timedelta(days=1), "%a")
 
-    hour = None
-    for hour in BOSS_SCHEDULE.keys():
-        if current_hour < hour:
-            next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
-            is_today = True
-            break
-        # if there is no boss to spawn on the current day
-        # then it should be the first boss of the next day
-        next_boss_spawn = BOSS_SCHEDULE['00:00'][next_day]
-        is_today = False
-
-    boss_names = []
-    for boss in next_boss_spawn:
-        boss_names.append(BOSS_DATA[boss])
-
-    await print_next_boss_message(boss_names, hour, channel, is_today)
+        hour = None
+        print('checking hours...')
+        for hour in BOSS_SCHEDULE.keys():
+            if current_hour < hour:
+                next_boss_spawn = BOSS_SCHEDULE[hour][current_day]
+                is_today = True
+                break
+            # if there is no boss to spawn on the current day
+            # then it should be the first boss of the next day
+            next_boss_spawn = BOSS_SCHEDULE['00:00'][next_day]
+            is_today = False
+        print('checking names...')
+        boss_names = []
+        for boss in next_boss_spawn:
+            boss_names.append(BOSS_DATA[boss])
+        print('Printing message...')
+        await print_next_boss_message(boss_names, hour, channel, is_today)
+    except Exception as e:
+        print(e)
 
 
 @BOT.command()
@@ -197,6 +209,14 @@ async def setup(ctx):
             await guild.create_role(name=name)
         else:
             await ctx.send('A {role} role already exists.')
+<<<<<<< HEAD
+=======
+
+
+@BOT.command()
+async def cleanup(ctx):
+    '''Remove roles from your server that the bot created to notify members about boss spawns.'''
+>>>>>>> 08d115580011d2babead34ad51eb9cb07707b794
 
 
 async def check_x_ahead(current_time, time_ahead, channel, guild):
