@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import discord
 from discord.ext import commands
 
-
+# starting code here, good luck
 async def print_boss_message(boss_name, channel, delta):
     '''Print the "boss is spawning" notification'''
     if len(boss_name) == 1:
