@@ -16,7 +16,7 @@ async def print_boss_message(boss_name, channel, delta):
             boss=boss_name, delta=delta))
     elif len(boss_name) == 2:
         await channel.send(
-            '{boss[0].mention} and {boss[1]} will spawn in {delta} minutes'
+            '{boss[0]} and {boss[1]} will spawn in {delta} minutes'
             .format(boss=boss_name, delta=delta))
 
 
