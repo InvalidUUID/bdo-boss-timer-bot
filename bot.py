@@ -12,11 +12,11 @@ from discord.ext import commands
 async def print_boss_message(boss_name, channel, delta):
     '''Print the "boss is spawning" notification'''
     if len(boss_name) == 1:
-        await channel.send('{boss[0].mention} spawns in {delta} minutes'.format(
+        await channel.send('{boss[0]} spawns in {delta} minutes'.format(
             boss=boss_name, delta=delta))
     elif len(boss_name) == 2:
         await channel.send(
-            '{boss[0].mention} and {boss[1].mention} will spawn in {delta} minutes'
+            '{boss[0].mention} and {boss[1]} will spawn in {delta} minutes'
             .format(boss=boss_name, delta=delta))
 
 
@@ -40,7 +40,7 @@ async def print_next_boss_message(boss_name, boss_time, channel, is_today):
     embed.set_footer(text='Spawns', icon_url='https://i.imgur.com/6qzL6l4.png')
     embed.set_thumbnail(url=boss_name[0]['avatar'])
 
-    # Markdown variation of the embed
+    # markdown variation of the embed
     for boss in boss_name:
         embed.add_field(name=boss['name'], value='{spawn}\n\n**Recommendations:**\n{recommendations}\n:link: [More Boss Info]({link})\n\n**Valuable Drops:**\n{drops}'
             .format(
@@ -240,7 +240,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
 
         for boss in next_boss_spawn:
             print(boss)
-            boss_names.append((discord.utils.get(guild.roles, name=boss)))
+            boss_names.mention((discord.utils.get(guild.roles, name=boss)))
 
         await print_boss_message(boss_names, channel, int(delta.seconds/60))
 
