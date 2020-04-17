@@ -12,11 +12,11 @@ from discord.ext import commands
 async def print_boss_message(boss_name, channel, delta):
     '''Print the "boss is spawning" notification'''
     if len(boss_name) == 1:
-        await channel.send('{boss[0]} spawns in {delta} minutes'.format(
+        await channel.send('{boss[0].mention} spawns in {delta} minutes'.format(
             boss=boss_name, delta=delta))
     elif len(boss_name) == 2:
         await channel.send(
-            '{boss[0]} and {boss[1]} will spawn in {delta} minutes'
+            '{boss[0].mention} and {boss[1].mention} will spawn in {delta} minutes'
             .format(boss=boss_name, delta=delta))
 
 
@@ -240,7 +240,7 @@ async def check_x_ahead(current_time, time_ahead, channel, guild):
 
         for boss in next_boss_spawn:
             print(boss)
-            boss_names.mention((discord.utils.get(guild.roles, name=boss)))
+            boss_names.append((discord.utils.get(guild.roles, name=boss)))
 
         await print_boss_message(boss_names, channel, int(delta.seconds/60))
 
@@ -254,6 +254,7 @@ async def background_task(channel, guild):
     while not BOT.is_closed():
         try:
             current_time = datetime.utcnow()
+            await check_x_ahead(current_time, 1, channel, guild)
             await check_x_ahead(current_time, 10, channel, guild)
             await check_x_ahead(current_time, 30, channel, guild)
         except Exception as exception:
