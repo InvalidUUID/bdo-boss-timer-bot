@@ -121,10 +121,6 @@ async def addme(ctx, *, boss_name):
             await ctx.send('Please check that you\'ve spelled the boss name correctly and try again.')
     except KeyError:
         ctx.send('Please check that you\'ve spelled the boss name correctly and try again.')
-    # user = ctx.message.author
-    # role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
-    # await user.add_roles(role)
-    # await ctx.send('You will now be notified when the next boss spawns :)')
 
 
 @BOT.command()
@@ -141,9 +137,6 @@ async def removeme(ctx, *, boss_name):
             await ctx.send('Please check that you\'ve spelled the boss name correctly and try again.')
     except KeyError:
         ctx.send('Please check that you\'ve spelled the boss name correctly and try again.')
-    # role = discord.utils.get(ctx.guild.roles, name='Boss Timer')
-    # await user.remove_roles(role)
-    # await ctx.send('You will no longer be notified when the next boss spawns :(')
 
 
 @BOT.command()
