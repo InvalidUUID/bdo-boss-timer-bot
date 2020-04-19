@@ -109,7 +109,8 @@ async def ping(ctx):
 
 @BOT.command()
 async def addme(ctx, *, boss_name):
-    '''Adds you to the notification list for when a specific boss spawns.'''
+    '''Adds you to the notification list for when a specific boss spawns. User must specify a boss name.
+    Example: .removeme Karanda'''
     user = ctx.message.author
     try:
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
@@ -128,7 +129,8 @@ async def addme(ctx, *, boss_name):
 
 @BOT.command()
 async def removeme(ctx, *, boss_name):
-    '''Removes you from notification list for when a boss spawns.'''
+    '''Removes you from notification list for when a boss spawns. User must specify a boss name.
+    Example: .removeme Karanda'''
     user = ctx.message.author
     try:
         role = discord.utils.get(ctx.guild.roles, name=boss_name)
@@ -254,7 +256,6 @@ async def background_task(channel, guild):
     while not BOT.is_closed():
         try:
             current_time = datetime.utcnow()
-            await check_x_ahead(current_time, 1, channel, guild)
             await check_x_ahead(current_time, 10, channel, guild)
             await check_x_ahead(current_time, 30, channel, guild)
         except Exception as exception:
