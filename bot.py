@@ -251,7 +251,6 @@ async def background_task(channel, guild):
             current_time = datetime.utcnow()
             await check_x_ahead(current_time, 10, channel, guild)
             await check_x_ahead(current_time, 30, channel, guild)
-            await check_x_ahead(current_time, 60, channel, guild)
         except Exception as exception:
             print(exception)
 
