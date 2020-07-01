@@ -3,7 +3,7 @@
     "Mon":["Garmoth"], 
     "Tue":["Nouver"],
     "Wed":["Karanda"],
-    "Thu":["Offin"],
+    "Thu":["Vell"],
     "Fri":["Kutum"],
     "Sat":["Kzarka"],
     "Sun":["Karanda","Kzarka"]},
@@ -66,7 +66,7 @@
   "21:00": {
     "Mon":["Kutum"], 
     "Tue":["Nouver"],
-    "Wed":["Kutum"],
+    "Wed":["Kutum","Offin"],
     "Thu":["Kzarka"],
     "Fri":["Nouver"],
     "Sat":["Muraka","Quint"],
