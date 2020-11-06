@@ -1,5 +1,5 @@
 {
-  "00:00": {
+  "01:00": {
     "Mon":["Garmoth"], 
     "Tue":["Nouver"],
     "Wed":["Karanda"],
@@ -7,7 +7,7 @@
     "Fri":["Kutum"],
     "Sat":["Kzarka"],
     "Sun":["Karanda","Kzarka"]},
-  "03:15": {
+  "04:15": {
     "Mon":["Kzarka","Nouver"], 
     "Tue":["Kzarka"],
     "Wed":["Garmoth"],
@@ -15,7 +15,7 @@
     "Fri":["Garmoth"],
     "Sat":["Kzarka","Kutum"],
     "Sun":[]},
-  "04:15": {
+  "05:15": {
     "Mon":[], 
     "Tue":[],
     "Wed":[],
@@ -23,7 +23,7 @@
     "Fri":[],
     "Sat":[],
     "Sun":[]},
-  "05:15": {
+  "06:15": {
     "Mon":["Karanda","Kutum"],
     "Tue":["Karanda"],
     "Wed":["Kzarka","Kutum"],
@@ -31,7 +31,7 @@
     "Fri":["Karanda","Kzarka"],
     "Sat":["Karanda"],
     "Sun":["Kutum","Nouver"]},
-  "07:00": {
+  "08:00": {
     "Mon":["Karanda"], 
     "Tue":["Kutum"],
     "Wed":["Karanda"],
@@ -39,7 +39,7 @@
     "Fri":["Nouver"],
     "Sat":["Offin"],
     "Sun":["Kzarka"]},
-  "10:00": {
+  "11:00": {
     "Mon":["Kzarka"], 
     "Tue":["Kzarka"],
     "Wed":[],
@@ -47,7 +47,7 @@
     "Fri":["Karanda"],
     "Sat":["Nouver"],
     "Sun":["Kutum"]},
-  "14:00": {
+  "15:00": {
     "Mon":["Kzarka"], 
     "Tue":["Nouver"],
     "Wed":["Karanda"],
@@ -55,7 +55,7 @@
     "Fri":["Kutum"],
     "Sat":["Kutum"],
     "Sun":["Nouver"]},
-  "17:00": {
+  "18:00": {
     "Mon":["Offin"], 
     "Tue":["Kutum"],
     "Wed":["Nouver"],
@@ -63,7 +63,7 @@
     "Fri":["Karanda"],
     "Sat":["Nouver"],
     "Sun":["Kzarka"]},
-  "21:00": {
+  "22:00": {
     "Mon":["Kutum"], 
     "Tue":["Nouver"],
     "Wed":["Kutum","Offin"],
