@@ -179,7 +179,7 @@ async def nextboss(ctx):
             break
         # if there is no boss to spawn on the current day
         # then it should be the first boss of the next day
-        next_boss_spawn = BOSS_SCHEDULE['00:00'][next_day]
+        next_boss_spawn = BOSS_SCHEDULE['01:00'][next_day]
         is_today = False
 
     boss_names = []
